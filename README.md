@@ -1,6 +1,7 @@
 <h1>WebAppMakerAngularFour</h1>
-<p>This project is a Web Application Maker. You can use this project to create webpages. </p>
+<p>This project is a Web Application Maker, an angular 4 project. You can use this project to create webpages. </p>
 <p>Project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.26</p>
+<p>All the components can be created and managed using the angular cli </p>
 
 
 <h1>Running the project </h1>
