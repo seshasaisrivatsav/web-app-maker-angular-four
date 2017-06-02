@@ -2,12 +2,13 @@
 
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.26.
 
-## Running the project 
-git clone https://github.com/seshasaisrivatsav/web-app-maker-angular-four
-npm install
-node server
-ng build --watch . (on a separate terminal)
-localhost:9000
+
+<h1>Running the project </h1>
+<p>git clone https://github.com/seshasaisrivatsav/web-app-maker-angular-four</p>
+<p>npm install</p>
+<p>node server</p>
+<p>ng build --watch . (on a separate terminal)</p>
+<p>localhost:9000</p>
 
 
 ## Development server
