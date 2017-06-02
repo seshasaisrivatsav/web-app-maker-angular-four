@@ -9,7 +9,7 @@
 <p>npm install</p>
 <p>node server</p>
 <p>ng build --watch . (on a separate terminal)</p>
-<p>Navigate to `http://localhost:9000/`</p>
+Navigate to `http://localhost:9000/`
 
 
 ## Development server
