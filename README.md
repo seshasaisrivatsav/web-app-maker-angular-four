@@ -1,6 +1,19 @@
-# WebAppMakerAngularFour
+<h1>WebAppMakerAngularFour</h1>
+<p>This project is a Web Application Maker, an angular 4 project. You can use this project to create webpages. </p>
+<p>Project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.26</p>
+<p>All the components can be created and managed using the angular cli </p>
 
-This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.26.
+
+
+<h1>Running the project </h1>
+
+<p>Step 1: git clone https://github.com/seshasaisrivatsav/web-app-maker-angular-four</p>
+<p>Step 2: npm install</p>
+<p>Step 3: Run the server: "node server" or "node server.js"</p> 
+<p>Step 4: Build and watch on port 9000 (using another terminal) : "ng build --watch" </p>
+<p>Step 5: Portal will be live on "http://localhost:9000/" </p>
+
+
 
 ## Development server
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

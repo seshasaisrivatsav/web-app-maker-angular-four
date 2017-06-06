@@ -18,7 +18,7 @@ export class UserService{
 
   register(username: String, password : String){
 
-    return this._http.get('/api')
+    return this._http.get('http://6550f316.ngrok.io/api')
       .toPromise()
       .then(data => { console.log(data); });
 
