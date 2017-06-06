@@ -9,9 +9,9 @@
 
 <p>Step 1: git clone https://github.com/seshasaisrivatsav/web-app-maker-angular-four</p>
 <p>Step 2: npm install</p>
-<p>Step 3: Run the server: "node server" or "node server.js"</p> 
-<p>Step 4: Build and watch on port 9000 (using another terminal) : "ng build --watch" </p>
-<p>Step 5: Portal will be live on "http://localhost:9000/" </p>
+<p>Step 3: Run the server: "nodemon server.js". This watcher constantly looks for server changes</p>
+<p>Step 4: Run the frontend: "npm start" </p>
+<p>Portal will be live on "http://localhost:4200/". API lives on port 9000</p>
 
 
 
