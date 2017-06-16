@@ -2,7 +2,7 @@
 
 
   <h1>Login</h1>
-  <input ngModel="username"
+  <input [(ngModel)]="username"
            placeholder="username"
            name="username"
            type="text"
@@ -10,7 +10,7 @@
            required/>
 
 
-  <input ngModel="password"
+  <input [(ngModel)]="password"
            placeholder="password"
            name="password"
            type="password"
@@ -21,7 +21,7 @@
     <button
       class="btn btn-primary btn-block"
       type="submit"
-    (click)="login(username, password)">Login</button>
+    (click)="login()">Login</button>
 
   <p></p>
   <a class="btn btn-success btn-block"
