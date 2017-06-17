@@ -8,6 +8,7 @@ import { LoginComponent } from './components/login/login.component';
 import {routing} from "./app.routing";
 import { RegisterComponent } from './components/register/register.component';
 import {UserService} from "./services/userService.client";
+import { ProfileComponent } from './components/profile/profile.component';
 
 // add client side services to providers
 
@@ -15,7 +16,9 @@ import {UserService} from "./services/userService.client";
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ProfileComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

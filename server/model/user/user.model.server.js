@@ -7,7 +7,7 @@ module.exports = function () {
     var mongoose = require ("mongoose");
     var UserSchema = require("./user.schema.server")();
     var User =  mongoose.model("User", UserSchema); //mongo plurarizes
-    
+
     var api = {
         findFacebookUser: findFacebookUser,
         createUser: createUser,
@@ -20,7 +20,7 @@ module.exports = function () {
     };
     return api;
     //findByID returns just one
-    
+
     function findFacebookUser(id) {
         return User.findOne({"facebook.id": id});
     }
@@ -50,13 +50,15 @@ module.exports = function () {
 
     //findOne returns only One (first one for multiple results)
     function findUserByCredentials(username, password) {
-        return User.findOne({username: username, password: password});
+      console.log("from MONGO")
+
+       return User.findOne({username: username, password: password});
+
     }
 
     function createUser(user){
-       console.log("user.model.server.createUser()");
         console.log(user);
         return  User.create(user);
     }
-    
+
 };

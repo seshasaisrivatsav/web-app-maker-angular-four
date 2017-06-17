@@ -33,12 +33,12 @@ app.use(function(req, res, next) {
 });
 
 
-const api = require('./server/routes/api');
+// For Build: When we build, we serve this for dis t
+// const api = require('./server/routes/api');
+// // Set our api routes
+// app.use('/api', api);
 
-// Set our api routes
-app.use('/api', api);
-
-// Catch all other routes and return the index file
+// For Build: Catch all other routes and return the index file
 // app.get('*', (req, res) => {
 //   res.sendFile(path.join(__dirname, 'dist/index.html'));
 // });
@@ -52,7 +52,7 @@ app.set('port', port);
 const server = http.createServer(app);
 
 
-// Database server side
+// Server side API
 var serverSide = require('./server/app');
 serverSide(app);
 
