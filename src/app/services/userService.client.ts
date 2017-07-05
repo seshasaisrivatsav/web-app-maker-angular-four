@@ -27,7 +27,7 @@ export class UserService{
 
     return this._http.post('http://localhost:9000/api/register', body)
       .toPromise()
-      .then(data => data );
+      .then(data => {console.log(data)} );
 
   }
 
