@@ -41,7 +41,8 @@ module.exports = function (app, models) {
   // };
 
 
- app.post  ('/api/login', passport.authenticate('local'), login);
+ // app.post  ('/api/login', passport.authenticate('local'), login);
+ app.post  ('/api/login', login);
 
 
 
@@ -214,11 +215,40 @@ module.exports = function (app, models) {
 
 
   function login(req, res) {
-    var user = req.user;
-    console.log("IN login");
-    console.log(user);
-    console.log(req);
-    res.json(user);
+    ////
+    console.log(req.body);
+
+
+    //
+    userModel
+      .findUserByUsername(req.body.username)
+      .then(
+        function (user) {
+          if (user && bcrypt.compareSync(req.body.password, user.password)) {
+            // console.log("Found user ")
+            //console.log(user);
+            console.log("match");
+            res.json(user);
+
+          } else {
+            console.log("Wrong pw");
+            res.send("Wrong pw");
+            // done(null, "Error in the login");
+          }
+        },
+        function (err) {
+          res.send(err);
+        });
+
+
+
+
+
+    // var user = req.user;
+    // console.log("IN login");
+    // console.log(user);
+    // console.log(req);
+    // res.json(user);
 
   }
 
