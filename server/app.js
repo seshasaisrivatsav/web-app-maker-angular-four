@@ -1,6 +1,5 @@
 
-/* the functioni sa Java script constructor which will be instantiated from
-top level server.js */
+/* the functioni sa Java script constructor which will be instantiated from top level server.js */
 
 /* req = parses the req from http, parses and makes it a nice clean object */
 
@@ -8,8 +7,8 @@ top level server.js */
 
 module.exports = function (app) {
     /* passing the instance app and immediately calling it*/
-    // we are pasbsing app and models to the services 
-    // instantiate them from 
+    // we are pasbsing app and models to the services
+    // instantiate them from
     var models = require("./model/models.server.js")();
 
    // pas the models to services.
@@ -25,8 +24,8 @@ module.exports = function (app) {
         var msg = req.params['something'];
         res.send({message: msg});
     });
-    
-    
+
+
 
     // app.get("/users/:id", function (req, res) {
     //     var id = req.params.id;
