@@ -16,8 +16,6 @@ export class UserService{
   }
 
 
-
-
   register(username: String, password : String){
 
     var body = {
@@ -26,8 +24,8 @@ export class UserService{
     };
 
     return this._http.post('http://localhost:9000/api/register', body)
-      .toPromise()
-      .then(data => {console.log(data)} );
+       .toPromise()
+       .then(data => {return data});
 
   }
 

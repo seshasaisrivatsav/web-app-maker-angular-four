@@ -163,7 +163,7 @@ module.exports = function (app, models) {
           } else {
             //right before we create the user, we encrypt the password
             // we replace then req.body password by hashing it
-            req.body.password = bcrypt.hashSync(req.body.password);
+            req.body.password = bcrypt.hashSync(password);
             return userModel
               .createUser(req.body);
           }
