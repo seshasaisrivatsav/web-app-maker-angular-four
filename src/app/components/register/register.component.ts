@@ -22,16 +22,16 @@ export class RegisterComponent implements OnInit {
 
   register(username, password){
 
-    this._userService.register(username, password)
-      .then(data => {
-        if(data){
-          this.router.navigate(['/profile']);
-        }
+      this._userService.register(username, password)
+        .then(data => {
+          if(data){
+            localStorage.setItem('user', JSON.stringify(data));
+            this.router.navigate(['/profile']);
+          }
 
-        console.log("Data from register service", data);
-        this.testresult = data['_body'];
-      });
-
-  }
+          // console.log("Data from register service", data);
+          // this.testresult = data['_body'];
+        });
+    }
 
 }

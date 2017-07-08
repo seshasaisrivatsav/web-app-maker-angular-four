@@ -185,7 +185,7 @@ module.exports = function (app, models) {
             //   }
             // })
 
-            res.send("Successfully created user");
+            res.json(user); // when user is successfully created
           }
         },
         function (err) {
