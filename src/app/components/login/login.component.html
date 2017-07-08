@@ -1,5 +1,9 @@
 <div class="container">
 
+  <div *ngIf="errorFlag"
+       class="alert alert-danger">
+    {{errorMsg}}
+  </div>
 
   <h1>Login</h1>
   <input [(ngModel)]="username"

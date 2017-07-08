@@ -3,7 +3,7 @@
  */
 
 import {Injectable} from "@angular/core";
-import {Http} from "@angular/http";
+import {Http, Response} from "@angular/http";
 import 'rxjs/Rx';
 
 // injecting service into module
@@ -14,7 +14,6 @@ export class UserService{
   constructor(private _http : Http){
 
   }
-
 
   register(username: String, password : String){
 
@@ -37,11 +36,17 @@ export class UserService{
     };
 
     return this._http.post('http://localhost:9000/api/login', body)
-      .toPromise()
-      .then(data => {
-        console.log("response after login", data);
-        return data;
-      });
+      .map(
+        (res: Response) => {
+          const data = res.json();
+          return data;
+        }
+      );
+      // .toPromise()
+      // .then(data => {
+      //   console.log("response after login", data);
+      //   return data;
+      // });
 
   }
 
