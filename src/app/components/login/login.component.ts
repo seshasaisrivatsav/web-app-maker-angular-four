@@ -33,8 +33,10 @@ export class LoginComponent implements OnInit {
 
     this._userService.login(this.username, this.password)
       .then(data => {
-        console.log(data);
-        this.testresult = data['_body'];
+        //console.log(data);
+        //this.testresult = data['_body'];
+
+        this.router.navigate(['/profile']);
       });
 
   }

@@ -38,7 +38,10 @@ export class UserService{
 
     return this._http.post('http://localhost:9000/api/login', body)
       .toPromise()
-      .then(data => { console.log(data); });
+      .then(data => {
+        console.log("response after login", data);
+        return data;
+      });
 
   }
 
