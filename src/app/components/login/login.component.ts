@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import {UserService} from "../../services/userService.client";
+import {UserService} from '../../services/userService.client';
 import {Router, ActivatedRoute} from '@angular/router';
 import 'rxjs/Rx';
 
@@ -31,12 +31,15 @@ export class LoginComponent implements OnInit {
   }
 
 
-  login(){
+  login() {
     // this.router.navigate(['./profile'], {relativeTo: this.route});
 
     this._userService.login(this.username, this.password)
       .subscribe(
-        (data: any) => {this.errorFlag = false, this.router.navigate(['/profile'])},
+        (data: any) => {
+            localStorage.setItem('user', JSON.stringify(data)),
+            this.errorFlag = false,
+            this.router.navigate(['/profile'])},
         (error: any) => this.errorFlag = true
       );
 
