@@ -9,6 +9,7 @@ import {routing} from "./app.routing";
 import { RegisterComponent } from './components/user/register/register.component';
 import {UserService} from "./services/userService.client";
 import { ProfileComponent } from './components/user/profile/profile.component';
+import {WebsiteListComponent} from "./components/website/website-list/website-list.component";
 
 // add client side services to providers
 
@@ -18,7 +19,8 @@ import { ProfileComponent } from './components/user/profile/profile.component';
     LoginComponent,
     RegisterComponent,
     ProfileComponent,
-    ProfileComponent
+    ProfileComponent,
+    WebsiteListComponent
   ],
   imports: [
     BrowserModule,
