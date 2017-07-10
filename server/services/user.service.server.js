@@ -41,7 +41,7 @@ module.exports = function (app, models) {
   // };
 
 
- // app.post  ('/api/login', passport.authenticate('local'), login);
+ //app.post  ('/api/login', passport.authenticate('local'), login);
  app.post  ('/api/login', login);
 
 
@@ -163,7 +163,7 @@ module.exports = function (app, models) {
           } else {
             //right before we create the user, we encrypt the password
             // we replace then req.body password by hashing it
-            req.body.password = bcrypt.hashSync(req.body.password);
+            req.body.password = bcrypt.hashSync(password);
             return userModel
               .createUser(req.body);
           }
@@ -185,7 +185,7 @@ module.exports = function (app, models) {
             //   }
             // })
 
-            res.send("Successfully created user");
+            res.json(user); // when user is successfully created
           }
         },
         function (err) {
@@ -228,11 +228,11 @@ module.exports = function (app, models) {
             // console.log("Found user ")
             //console.log(user);
             console.log("match");
-            res.json(user);
+            res.status(200).json(user);
 
           } else {
             console.log("Wrong pw");
-            res.send("Wrong pw");
+            res.status(401).json("Wrong pw"); // sending status 410 unauthorized in case of wrong credentials
             // done(null, "Error in the login");
           }
         },

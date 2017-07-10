@@ -13,14 +13,13 @@ export class ProfileComponent implements OnInit {
   lastName : String;
   email : String;
 
-
-
-
-
-
   constructor() { }
 
   ngOnInit() {
+  }
+
+  logout(){
+    localStorage.clear();
   }
 
 }
