@@ -15,6 +15,7 @@ export class ProfileComponent implements OnInit {
   lastName : String;
   email : String;
   user = {};
+  userId : String;
   errorFlag : boolean;
   errorMsg = 'Invalid username or password !';
 
@@ -38,6 +39,7 @@ export class ProfileComponent implements OnInit {
     this.firstName = this.user['firstName'];
     this.lastName= this.user['lastName'];
     this.email = this.user['email'];
+    this.userId = this.user['_id'];
   }
 
 

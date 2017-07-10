@@ -13,7 +13,9 @@ const APP_ROUTES : Routes = [
   {path: 'login', component : LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'profile', component: ProfileComponent},
-  {path: 'website-list', component: WebsiteListComponent}
+  //{path: 'website-list', component: WebsiteListComponent}
+
+  {path: 'user/:userId/website', component: WebsiteListComponent}
 ];
 
 // Export the routes as module providers
