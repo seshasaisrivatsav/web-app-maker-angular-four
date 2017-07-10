@@ -10,6 +10,8 @@ import { RegisterComponent } from './components/user/register/register.component
 import {UserService} from "./services/userService.client";
 import { ProfileComponent } from './components/user/profile/profile.component';
 import {WebsiteListComponent} from "./components/website/website-list/website-list.component";
+import {WebsiteNewComponent} from "./components/website/website-new/website-new.component";
+
 
 // add client side services to providers
 
@@ -20,7 +22,8 @@ import {WebsiteListComponent} from "./components/website/website-list/website-li
     RegisterComponent,
     ProfileComponent,
     ProfileComponent,
-    WebsiteListComponent
+    WebsiteListComponent,
+    WebsiteNewComponent
   ],
   imports: [
     BrowserModule,

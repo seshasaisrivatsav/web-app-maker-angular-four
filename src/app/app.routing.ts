@@ -8,14 +8,14 @@ import {LoginComponent} from "./components/user/login/login.component";
 import {RegisterComponent} from "./components/user/register/register.component";
 import {ProfileComponent} from "./components/user/profile/profile.component";
 import {WebsiteListComponent} from "./components/website/website-list/website-list.component";
+import {WebsiteNewComponent} from "./components/website/website-new/website-new.component";
 const APP_ROUTES : Routes = [
   {path: '', component : LoginComponent},
   {path: 'login', component : LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'profile', component: ProfileComponent},
-  //{path: 'website-list', component: WebsiteListComponent}
-
-  {path: 'user/:userId/website', component: WebsiteListComponent}
+  {path: 'user/:userId/website', component: WebsiteListComponent},
+  {path: 'user/:userId/website/new', component: WebsiteNewComponent}
 ];
 
 // Export the routes as module providers
