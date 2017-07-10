@@ -7,6 +7,7 @@ module.exports = function () {
         username : {type: String, required: true},
         password : String,
         firstName : String,
+        email : String,
         facebook : {
             token: String,
             id: String,
