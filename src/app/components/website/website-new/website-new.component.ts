@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WebsiteNewComponent implements OnInit {
 
+  //todo alerts when trying to submit form without filling name and description of new website
+
   constructor() { }
 
   ngOnInit() {

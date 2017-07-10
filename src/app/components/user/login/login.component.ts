@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 import {UserService} from '../../../services/userService.client';
 import {Router, ActivatedRoute} from '@angular/router';
 import 'rxjs/Rx';
@@ -17,13 +16,7 @@ export class LoginComponent implements OnInit {
   errorFlag : boolean;
   errorMsg = 'Invalid username or password !';
 
-  testresult: String;
-
   // TODO : fix this
-  // login(username, password){
-  //   this._userService.login(username, password);
-  // }
-
 
   constructor(private route: ActivatedRoute, private router: Router, private _userService: UserService ){ }
 
@@ -42,14 +35,6 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['/profile'])},
         (error: any) => this.errorFlag = true
       );
-
-      // .then(data => {
-      //   console.log("response at login compo: ", data);
-      //   //this.testresult = data['_body'];
-      //
-      //   this.router.navigate(['/profile']);
-      // });
-
   }
 
 }
