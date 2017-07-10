@@ -4,9 +4,9 @@
 // Import components
 import {Routes, RouterModule} from "@angular/router";
 import {ModuleWithProviders} from "@angular/core";
-import {LoginComponent} from "./components/login/login.component";
-import {RegisterComponent} from "./components/register/register.component";
-import {ProfileComponent} from "./components/profile/profile.component";
+import {LoginComponent} from "./components/user/login/login.component";
+import {RegisterComponent} from "./components/user/register/register.component";
+import {ProfileComponent} from "./components/user/profile/profile.component";
 
 const APP_ROUTES : Routes = [
   {path: '', component : LoginComponent},
