@@ -11,6 +11,7 @@ import { UserService } from "./services/userService.client";
 import { ProfileComponent } from './components/user/profile/profile.component';
 import { WebsiteListComponent } from "./components/website/website-list/website-list.component";
 import { WebsiteNewComponent } from "./components/website/website-new/website-new.component";
+import {WebsiteService} from "./services/website.service.client";
 
 
 // add client side services to providers
@@ -31,7 +32,7 @@ import { WebsiteNewComponent } from "./components/website/website-new/website-ne
     HttpModule,
     Routing
   ],
-  providers: [UserService],
+  providers: [UserService, WebsiteService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

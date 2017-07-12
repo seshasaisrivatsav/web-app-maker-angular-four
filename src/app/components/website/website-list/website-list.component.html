@@ -24,28 +24,27 @@
 
 <!--Body of the page-->
 
-<!--<div class="container">-->
-  <!--<ul class="list-group">-->
-    <!--<li ng-repeat="website in model.websites" class="list-group-item">-->
-      <!--<a href="#/user/{{model.userId}}/website/{{website._id}}/page">-->
-        <!--{{website.name}}-->
-      <!--</a>-->
-
-      <!--<a href="#/user/{{model.userId}}/website/{{website._id}}/page" class="pull-right">-->
-        <!--<span class="glyphicon glyphicon-play nudge-right-10px"></span>-->
-      <!--</a>-->
-      <!--<a href="#/user/{{website._user}}/website/{{website._id}}" class="pull-right">-->
-        <!--<span class="glyphicon glyphicon-cog  "></span>-->
-      <!--</a>-->
-    <!--</li>-->
-  <!--</ul>-->
-<!--</div>-->
+<div class="container">
+  <ul class="list-group">
+    <li *ngFor="let website of websites" class="list-group-item">
+      <a [routerLink]="['/user', userId, 'website', website._id, 'page']">
+        {{website.name}}
+      </a>
+      <a [routerLink]="['/user', userId, 'website', website._id, 'page']" class="pull-right">
+        <span class="glyphicon glyphicon-play nudge-right-10px"></span>
+      </a>
+      <a [routerLink]="['/user', website._user, 'website', website._id]" class="pull-right">
+        <span class="glyphicon glyphicon-cog  "></span>
+      </a>
+    </li>
+  </ul>
+</div>
 
 <!-- Footer -->
 <nav class="navbar navbar-default navbar-fixed-bottom">
   <div class="container-fluid">
     <p class="navbar-text pull-right">
-      <a [routerLink]="['user']">
+      <a [routerLink]="['/profile']">
         <span class="glyphicon glyphicon-user"></span>
       </a>
     </p>
