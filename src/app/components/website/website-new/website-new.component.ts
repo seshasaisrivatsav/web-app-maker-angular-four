@@ -18,8 +18,9 @@ export class WebsiteNewComponent implements OnInit {
   };
   user = {};
   userId: string;
-
-  //todo alerts when trying to submit form without filling name and description of new website
+  error = 'Enter the name of the website';
+  alert = '* Enter the website name';
+  flag = false;
 
   constructor(private _websiteService: WebsiteService, private router: Router) { }
 
@@ -27,15 +28,17 @@ export class WebsiteNewComponent implements OnInit {
     this.getUser();
   }
 
-  //url("/user/"+vm.userId+"/website");
-
   createWebsite(){
-    console.log("create website in ts called", this.userId);
-    this._websiteService.createWebsite(this.userId, this.website)
-      .subscribe(
-        (data: any) => this.router.navigate(['user/', this.userId, 'website']),
-        (error: any) => console.log(error)
-      );
+
+    if(this.website.name == '')
+      this.flag = true;
+    else {
+      this._websiteService.createWebsite(this.userId, this.website)
+        .subscribe(
+          (data: any) => this.router.navigate(['user/', this.userId, 'website']),
+          (error: any) => console.log(error)
+        );
+    }
   }
 
   getUser(){
