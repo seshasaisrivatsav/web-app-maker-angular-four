@@ -44,7 +44,7 @@
              placeholder="Name of the blog"
              required>
       <span class="alert-class"
-            ng-show="model.myform.websitename.$invalid">{{alert}}</span>
+            *ngIf=flag>{{alert}}</span>
     </div>
 
 

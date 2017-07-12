@@ -47,11 +47,15 @@ export class WebsiteEditComponent implements OnInit {
 
   updateWebsite(){
 
-    this._websiteService.updateWebsite(this.websiteId, this.website)
-      .subscribe(
-        (data: any) => this.router.navigate(['/user', this.userId, 'website']),
-        (error) => console.log("error this is: ", error)
-      );
+    if(this.website.name == '')
+      this.flag = true;
+    else {
+      this._websiteService.updateWebsite(this.websiteId, this.website)
+        .subscribe(
+          (data: any) => this.router.navigate(['/user', this.userId, 'website']),
+          (error) => console.log("error this is: ", error)
+        );
+    }
   }
 
   deleteWebsite(){
