@@ -12,6 +12,7 @@ import { ProfileComponent } from './components/user/profile/profile.component';
 import { WebsiteListComponent } from "./components/website/website-list/website-list.component";
 import { WebsiteNewComponent } from "./components/website/website-new/website-new.component";
 import {WebsiteService} from "./services/website.service.client";
+import {WebsiteEditComponent} from "./components/website/website-edit/website-edit.component";
 
 
 // add client side services to providers
@@ -24,7 +25,8 @@ import {WebsiteService} from "./services/website.service.client";
     ProfileComponent,
     ProfileComponent,
     WebsiteListComponent,
-    WebsiteNewComponent
+    WebsiteNewComponent,
+    WebsiteEditComponent
   ],
   imports: [
     BrowserModule,
