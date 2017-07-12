@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {WebsiteService} from "../../../services/website.service.client";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-website-list',
@@ -11,8 +12,10 @@ export class WebsiteListComponent implements OnInit {
   user = {};
   userId : String;
   websites = {};
+  websiteId: string;
+  sub: any;
 
-  constructor(private _websiteService : WebsiteService) { }
+  constructor(private _websiteService : WebsiteService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.getUser();

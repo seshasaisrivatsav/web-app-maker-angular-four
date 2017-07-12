@@ -18,7 +18,7 @@
     <!--tick mark-->
     <p class="navbar-text pull-right">
 
-      <a ng-click = "model.updateWebsite(model.website)"
+      <a (click) = "updateWebsite()"
          class="navbar-link">
         <span class="glyphicon glyphicon-ok"></span>
       </a>
@@ -36,7 +36,7 @@
   <form novalidate name="model.myform">
     <div class="form-group">
       <label for="WebsiteName">Website Name</label>
-      <input ng-model = "model.website.name"
+      <input [(ngModel)] = "website.name"
              type="text"
              class="form-control"
              id="WebsiteName"
@@ -51,9 +51,9 @@
 
     <div class="form-group">
       <label for="WebsiteDescription">Website Description</label>
-      <textarea ng-model="model.website.description"
+      <textarea [(ngModel)] = "website.description"
                 rows="4"
-
+                name="webdesc"
                 class="form-control"
                 id="WebsiteDescription"
                 placeholder="Enter the content of the blog"></textarea>

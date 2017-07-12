@@ -11,6 +11,8 @@ import 'rxjs/Rx';
 
 export class WebsiteService{
 
+  baseUrl = 'http://localhost:9000';
+
   constructor(private _http : Http){
 
   }
@@ -67,6 +69,22 @@ export class WebsiteService{
       );
 
   }
+
+  updateWebsite(websiteId, website){
+
+    var url = this.baseUrl + '/api/website/' + websiteId;
+    var body = website;
+    return this._http.put(url, body)
+      .map(
+        (res: Response) => {
+          const data = res.json();
+          return data;
+        }
+      );
+
+}
+
+
 
 
 
