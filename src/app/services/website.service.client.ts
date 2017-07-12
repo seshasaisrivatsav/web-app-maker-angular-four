@@ -77,7 +77,7 @@ export class WebsiteService{
     return this._http.put(url, body)
       .map(
         (res: Response) => {
-          const data = res.json();
+          const data = res;
           return data;
         }
       );
@@ -89,7 +89,7 @@ export class WebsiteService{
     return this._http.delete(url)
       .map(
         (res: Response) => {
-          const data = res.json();
+          const data = res;
           return data;
         }
       );

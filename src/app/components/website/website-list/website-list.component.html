@@ -27,10 +27,10 @@
 <div class="container">
   <ul class="list-group">
     <li *ngFor="let website of websites" class="list-group-item">
-      <a [routerLink]="['/user', website._user, 'website', website._id]">
+      <a [routerLink]="['/user', website._user, 'website', website._id, 'page']">
         {{website.name}}
       </a>
-      <a [routerLink]="['/user', website._user, 'website', website._id]" class="pull-right">
+      <a [routerLink]="['/user', website._user, 'website', website._id, 'page']" class="pull-right">
         <span class="glyphicon glyphicon-play nudge-right-10px"></span>
       </a>
       <a [routerLink]="['/user', website._user, 'website', website._id]" class="pull-right">

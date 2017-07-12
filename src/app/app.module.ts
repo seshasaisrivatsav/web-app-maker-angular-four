@@ -13,6 +13,10 @@ import { WebsiteListComponent } from "./components/website/website-list/website-
 import { WebsiteNewComponent } from "./components/website/website-new/website-new.component";
 import {WebsiteService} from "./services/website.service.client";
 import {WebsiteEditComponent} from "./components/website/website-edit/website-edit.component";
+import {PageNewComponent} from "./components/page/page-new/page-new.component";
+import { PageListComponent } from './components/page/page-list/page-list.component';
+import { PageEditComponent } from './components/page/page-edit/page-edit.component';
+
 
 
 // add client side services to providers
@@ -26,7 +30,10 @@ import {WebsiteEditComponent} from "./components/website/website-edit/website-ed
     ProfileComponent,
     WebsiteListComponent,
     WebsiteNewComponent,
-    WebsiteEditComponent
+    WebsiteEditComponent,
+    PageNewComponent,
+    PageListComponent,
+    PageEditComponent
   ],
   imports: [
     BrowserModule,
