@@ -28,9 +28,9 @@
 
 
 <div class="container">
-  <div ng-show="model.error"
+  <div *ngIf=flag
        class="alert alert-danger">
-    {{model.error}}
+    {{error}}
   </div>
 
   <form novalidate name="model.myform">
@@ -44,7 +44,7 @@
              placeholder="Name of the blog"
              required>
       <span class="alert-class"
-            ng-show="model.myform.websitename.$invalid">{{model.alert}}</span>
+            ng-show="model.myform.websitename.$invalid">{{alert}}</span>
     </div>
 
 

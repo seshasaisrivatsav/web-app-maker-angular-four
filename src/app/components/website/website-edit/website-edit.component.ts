@@ -10,11 +10,16 @@ export class WebsiteEditComponent implements OnInit {
 
   user = {};
   userId : String;
+  error : string;
+  flag = false;
+  alert : string;
 
   constructor() { }
 
   ngOnInit() {
     this.getUser();
+    this.error = 'Enter the name of the website';
+    this.alert = '* Enter the website name';
   }
 
   getUser(){
