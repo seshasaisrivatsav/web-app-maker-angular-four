@@ -81,11 +81,18 @@ export class WebsiteService{
           return data;
         }
       );
+  }
 
-}
+  deleteWebsite(websiteId){
 
-
-
-
+    var url = this.baseUrl + '/api/website/' + websiteId;
+    return this._http.delete(url)
+      .map(
+        (res: Response) => {
+          const data = res.json();
+          return data;
+        }
+      );
+  }
 
 }
