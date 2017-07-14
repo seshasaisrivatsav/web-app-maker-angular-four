@@ -28,9 +28,6 @@ export class RegisterComponent implements OnInit {
             localStorage.setItem('user', JSON.stringify(data));
             this.router.navigate(['/profile']);
           }
-
-          // console.log("Data from register service", data);
-          // this.testresult = data['_body'];
         });
     }
 

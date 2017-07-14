@@ -4,7 +4,7 @@
 module.exports= function(app, models){
 
     var websiteModel = models.websiteModel;
-    
+
     var websites = [
         { "_id": "123", "name": "Facebook",    "developerId": "456" },
         { "_id": "234", "name": "Tweeter",     "developerId": "456" },
@@ -29,8 +29,12 @@ module.exports= function(app, models){
      are the same URLs to Express!     */
 
     function createWebsite(req,res) {
+
+
         var userId = req.params.userId;
         var website = req.body;
+
+        console.log("request received to create a website ", userId, website);
 
         websiteModel
             .createWebsiteForUser(userId, website)
@@ -51,7 +55,7 @@ module.exports= function(app, models){
 
     function findAllWebsitesForUser(req,res) {
         var userId = req.params.userId;
-        
+
         websiteModel
             .findAllWebsitesForUser(userId)
             .then(function (websites) {
@@ -60,7 +64,7 @@ module.exports= function(app, models){
             function (err) {
                 res.sendStatus(404).send(err);
             });
-        
+
         /*retrieves the websites in local websites array whose developerId matches the parameter userId */
         // var resultSet = [];
         // for (var i in websites){
