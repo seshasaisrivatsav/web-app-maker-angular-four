@@ -11,15 +11,19 @@ export class PageListComponent implements OnInit {
 
   pages = {};
   websiteId: string;
+  userId: string;
 
   constructor(private _pageService: PageService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
 
-    // reading websiteId from url params
+    // reading userId and websiteId from url params
     this.activatedRoute.params
       .subscribe(
-        (params: any) => this.websiteId = params['websiteId']
+        (params: any) => {
+          this.websiteId = params['websiteId'];
+          this.userId = params['userId'];
+        }
       );
 
     // fetching list of pages
@@ -30,5 +34,4 @@ export class PageListComponent implements OnInit {
       );
 
   }
-
 }
