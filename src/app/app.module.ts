@@ -16,6 +16,7 @@ import {WebsiteEditComponent} from "./components/website/website-edit/website-ed
 import {PageNewComponent} from "./components/page/page-new/page-new.component";
 import { PageListComponent } from './components/page/page-list/page-list.component';
 import { PageEditComponent } from './components/page/page-edit/page-edit.component';
+import {PageService} from "./services/page.service.client";
 
 
 
@@ -41,7 +42,7 @@ import { PageEditComponent } from './components/page/page-edit/page-edit.compone
     HttpModule,
     Routing
   ],
-  providers: [UserService, WebsiteService],
+  providers: [UserService, WebsiteService, PageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
