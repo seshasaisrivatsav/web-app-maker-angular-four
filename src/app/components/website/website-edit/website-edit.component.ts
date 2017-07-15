@@ -18,7 +18,14 @@ export class WebsiteEditComponent implements OnInit {
   websiteId: string;
   websiteName: string;
   websiteDesc: string;
-  website= {};
+  website = { id : {},
+    name: "",
+    description : "",
+    _user: {},
+    dateCreated: {},
+    pages: [],
+    __v: 0};
+  websites = {};
 
   constructor(private activatedRoute: ActivatedRoute, private _websiteService: WebsiteService, private router: Router) { }
 
@@ -35,9 +42,18 @@ export class WebsiteEditComponent implements OnInit {
     // getting websit details as per websiteId
     this._websiteService.findWebsiteById(this.websiteId)
       .subscribe(
-        (data: any) => this.website = data
+        (data: any) =>{this.website = data;
+        console.log(data);}
       );
 
+    // getting list of all websites
+    this._websiteService.findWebsitesByUser(this.userId)
+      .subscribe(
+        (data: any) => {
+          console.log(data);
+          this.websites = data; },
+        (error) => console.log(error)
+      );
   }
 
   getUser(){
@@ -53,7 +69,7 @@ export class WebsiteEditComponent implements OnInit {
       this._websiteService.updateWebsite(this.websiteId, this.website)
         .subscribe(
           (data: any) => this.router.navigate(['/user', this.userId, 'website']),
-          (error) => console.log("error this is: ", error)
+          (error) => console.log(error)
         );
     }
   }
