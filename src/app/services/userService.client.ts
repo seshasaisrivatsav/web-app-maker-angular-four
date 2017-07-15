@@ -15,6 +15,16 @@ export class UserService{
 
   }
 
+  findUserById(userId : String){
+    return this._http.get('http://localhost:9000/api/user/'+userId)
+      .map(
+        (res: Response) => {
+          const data = res.json();
+          return data;
+        }
+      );
+  }
+
   register(username: String, password : String){
 
     var body = {
@@ -47,6 +57,17 @@ export class UserService{
       //   console.log("response after login", data);
       //   return data;
       // });
+
+  }
+
+  updateUser(user : any){
+    return this._http.put('http://localhost:9000/api/user/'+ user._id, user)
+      .map(
+        (res: Response) => {
+          console.log("client service");
+          return "Updated";
+        }
+      );
 
   }
 

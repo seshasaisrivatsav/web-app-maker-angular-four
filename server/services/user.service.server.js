@@ -330,6 +330,8 @@ module.exports = function (app, models) {
     var userId = req.params.userId;
     var user = req.body;
 
+    console.log('server side', userId, user);
+
     userModel
       .updateUser(userId, user)
       .then(function (stats) {
