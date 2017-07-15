@@ -6,16 +6,18 @@ import {Injectable} from "@angular/core";
 import {Http, Response} from '@angular/http';
 import 'rxjs/Rx';
 
-@Injectable();
+@Injectable()
 
 export class PageService {
+
+  baseUrl = 'http://localhost:9000';
 
   constructor(private _http: Http) {
   }
 
 
   createPage(websiteId, page) {
-    var url = '/api/website/' + websiteId + '/page';
+    var url = this.baseUrl + '/api/website/' + websiteId + '/page';
     return this._http.post(url, page)
       .map(
         (res: Response) => {
@@ -25,9 +27,9 @@ export class PageService {
       );
   }
 
-  findPageByWebsiteId(websiteId, page){
-    var url = '/api/website/'+websiteId+'/page';
-    return this._http.get(url, page)
+  findPageByWebsiteId(websiteId){
+    var url = this.baseUrl + '/api/website/'+websiteId+'/page';
+    return this._http.get(url)
       .map(
         (res: Response) => {
           const data = res.json();
@@ -37,7 +39,7 @@ export class PageService {
   }
 
   findPageById(pageId) {
-    var url = '/api/page/'+pageId;
+    var url = this.baseUrl + '/api/page/'+pageId;
     return this._http.get(url)
       .map(
         (res: Response) => {
@@ -48,7 +50,7 @@ export class PageService {
   }
 
   updatePage(pageId, page){
-    var url = '/api/page/' +pageId;
+    var url = this.baseUrl + '/api/page/' +pageId;
     return this._http.put(url,page)
       .map(
         (res: Response) => {
@@ -59,7 +61,7 @@ export class PageService {
   }
 
   deletePage(pageId){
-    var url = '/api/page/' +pageId;
+    var url = this.baseUrl + '/api/page/' +pageId;
     return this._http.delete(url)
       .map(
         (res: Response) => {
