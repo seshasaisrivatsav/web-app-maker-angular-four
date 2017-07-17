@@ -22,8 +22,9 @@ const APP_ROUTES : Routes = [
   {path: 'user/:userId/website/new', component: WebsiteNewComponent},
   {path: 'user/:userId/website/:websiteId', component: WebsiteEditComponent},
   {path: 'user/:userId/website/:websiteId/page', component: PageListComponent},
-  {path: 'user/:userId/website/:websiteId/page/:pageId', component: PageEditComponent},
   {path: 'user/:userId/website/:websiteId/page/new', component: PageNewComponent},
+  {path: 'user/:userId/website/:websiteId/page/:pageId', component: PageEditComponent},
+
 ];
 
 // Export the routes as module providers
