@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {PageService} from "../../../services/page.service.client";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-page-edit',
@@ -7,7 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PageEditComponent implements OnInit {
 
-  constructor() { }
+  userId: string;
+  websiteId: string;
+  pageId: string;
+
+  constructor(private _pageService: PageService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
   }

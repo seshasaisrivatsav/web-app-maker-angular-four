@@ -41,7 +41,7 @@ export class PageNewComponent implements OnInit {
 
   createPage(){
 
-    if(this.page.name == "")
+    if(this.page.name == "") // checking if page name is blank
       this.errFlag = true;
     else{
       this._pageService.createPage(this.websiteId, this.page)
