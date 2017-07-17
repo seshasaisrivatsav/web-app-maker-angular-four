@@ -16,6 +16,16 @@ export class PageEditComponent implements OnInit {
   constructor(private _pageService: PageService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
+
+    // fetching userId, websiteId and pageId from current route
+    this.activatedRoute.params
+      .subscribe(
+        (params: any) => {
+          this.userId = params['userId'];
+          this.websiteId = params['websiteId'];
+          this.pageId = params['pageId'];
+        }
+      );
   }
 
 }
