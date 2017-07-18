@@ -15,8 +15,11 @@ export class UserService{
 
   }
 
+
+   baseUrl = 'http://localhost:9000/';
+
   findUserById(userId : String){
-    return this._http.get('http://localhost:9000/api/user/'+userId)
+    return this._http.get('/api/user/'+userId)
       .map(
         (res: Response) => {
           const data = res.json();
@@ -32,7 +35,7 @@ export class UserService{
       password : password
     };
 
-    return this._http.post('http://localhost:9000/api/register', body)
+    return this._http.post('/api/register', body)
        .toPromise()
        .then(data => {return data});
 
@@ -45,7 +48,7 @@ export class UserService{
       password : password
     };
 
-    return this._http.post('http://localhost:9000/api/login', body)
+    return this._http.post('/api/login', body)
       .map(
         (res: Response) => {
           const data = res.json();
@@ -61,7 +64,7 @@ export class UserService{
   }
 
   updateUser(user : any){
-    return this._http.put('http://localhost:9000/api/user/'+ user._id, user)
+    return this._http.put('/api/user/'+ user._id, user)
       .map(
         (res: Response) => {
           console.log("client service");
