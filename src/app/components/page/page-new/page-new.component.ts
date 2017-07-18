@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {PageService} from "../../../services/page.service.client";
-import {ActivatedRoute, Router} from "@angular/router";
+import {PageService} from '../../../services/page.service.client';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-page-new',
@@ -15,14 +15,14 @@ export class PageNewComponent implements OnInit {
   alert: string;
   errFlag: boolean; // flag to show/hide error alerts
   page = {
-    name : "",
-    title : "",
+    name : '',
+    title : '',
     widgets : [ ]
   };
 
   constructor(private _pageService: PageService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
-  ngOnInit(){
+  ngOnInit() {
 
     // setting err flag as false by default
     this.errFlag = false;
@@ -39,11 +39,12 @@ export class PageNewComponent implements OnInit {
 
   }
 
-  createPage(){
+  createPage() {
 
-    if(this.page.name == "") // checking if page name is blank
+    if (this.page.name === '') {
+      // checking if page name is blank
       this.errFlag = true;
-    else{
+    } else {
       this._pageService.createPage(this.websiteId, this.page)
         .subscribe(
           (data: any) => this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page']),

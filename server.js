@@ -34,7 +34,7 @@ app.use(function(req, res, next) {
 });
 
 
-// For Build: When we build, we serve this for dis t
+// For Build: When we build, we serve this for dist
 const api = require('./server/routes/api');
 
 
@@ -52,7 +52,6 @@ app.get('*', function (req, res) {
 const port = '9000';
 app.set('port', port);
 
-
 // Create HTTP server
 const server = http.createServer(app);
 
@@ -62,6 +61,6 @@ var serverSide = require('./server/app');
 serverSide(app);
 
 //Listen on provided port, on all network interfaces.
-server.listen(process.env.PORT , () => console.log(`API running on localhost:${port}`)); //-- working on heroku
-//server.listen(port , () => console.log(`API running on localhost:${port}`)); //-- working on LocalHost
+//server.listen(process.env.PORT , () => console.log(`API running on localhost:${port}`)); //-- working on heroku
+server.listen(port , () => console.log(`API running on localhost:${port}`)); //-- working on LocalHost
 
