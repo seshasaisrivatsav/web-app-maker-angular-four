@@ -13,6 +13,9 @@ import {WebsiteEditComponent} from "./components/website/website-edit/website-ed
 import {PageListComponent} from "./components/page/page-list/page-list.component";
 import {PageEditComponent} from "./components/page/page-edit/page-edit.component";
 import {PageNewComponent} from "./components/page/page-new/page-new.component";
+import {WidgetListComponent} from "./components/widget/widget-list/widget-list.component";
+import {WidgetNewComponent} from "./components/widget/widget-new/widget-new.component";
+import {WidgetEditComponent} from "./components/widget/widget-edit/widget-edit.component";
 const APP_ROUTES : Routes = [
   {path: '', component : LoginComponent},
   {path: 'login', component : LoginComponent},
@@ -24,6 +27,9 @@ const APP_ROUTES : Routes = [
   {path: 'user/:userId/website/:websiteId/page', component: PageListComponent},
   {path: 'user/:userId/website/:websiteId/page/new', component: PageNewComponent},
   {path: 'user/:userId/website/:websiteId/page/:pageId', component: PageEditComponent},
+  {path: 'user/:userId/website/:websiteId/page/:pageId/widget', component: WidgetListComponent},
+  {path: 'user/:userId/website/:websiteId/page/:pageId/widget/new', component: WidgetNewComponent},
+  {path: 'user/:userId/website/:websiteId/page/:pageId/widget/:widgetId', component: WidgetEditComponent}
 
 ];
 
