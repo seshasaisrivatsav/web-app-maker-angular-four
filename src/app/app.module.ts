@@ -21,8 +21,6 @@ import { WidgetNewComponent } from './components/widget/widget-new/widget-new.co
 import { WidgetEditComponent } from './components/widget/widget-edit/widget-edit.component';
 import { WidgetListComponent } from './components/widget/widget-list/widget-list.component';
 
-
-
 // add client side services to providers
 
 @NgModule({
