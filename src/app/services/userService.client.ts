@@ -16,7 +16,7 @@ export class UserService{
   }
 
 
-   baseUrl = 'http://localhost:9000/';
+  baseUrl = 'http://localhost:9000/';
 
   findUserById(userId : String){
     return this._http.get('/api/user/'+userId)

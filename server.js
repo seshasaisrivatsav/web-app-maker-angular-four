@@ -36,14 +36,12 @@ app.use(function(req, res, next) {
 
 // For Build: When we build, we serve this for dis t
 const api = require('./server/routes/api');
+
+
 // Set our api routes
 app.use('/api', api);
 
 // For Build: Catch all other routes and return the index file
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'dist/index.html'));
-// });
-
 app.get('*', function (req, res) {
   const index = path.join(__dirname, 'dist', 'index.html');
   res.sendFile(index);
@@ -64,6 +62,6 @@ var serverSide = require('./server/app');
 serverSide(app);
 
 //Listen on provided port, on all network interfaces.
-server.listen(process.env.PORT , () => console.log(`API running on localhost:${port}`));
-
+//server.listen(process.env.PORT , () => console.log(`API running on localhost:${port}`)); //-- working on heroku
+server.listen(port , () => console.log(`API running on localhost:${port}`)); //-- working on LocalHost
 
