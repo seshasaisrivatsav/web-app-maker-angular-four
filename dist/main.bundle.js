@@ -999,7 +999,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var PageService = (function () {
     function PageService(_http) {
         this._http = _http;
-        this.baseUrl = 'http://localhost:9000';
+        this.baseUrl = '';
     }
     PageService.prototype.createPage = function (websiteId, page) {
         var url = this.baseUrl + '/api/website/' + websiteId + '/page';
@@ -1081,9 +1081,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var UserService = (function () {
     function UserService(_http) {
         this._http = _http;
+        this.baseUrl = 'http://localhost:9000/';
     }
     UserService.prototype.findUserById = function (userId) {
-        return this._http.get('http://localhost:9000/api/user/' + userId)
+        return this._http.get('/api/user/' + userId)
             .map(function (res) {
             var data = res.json();
             return data;
@@ -1094,7 +1095,7 @@ var UserService = (function () {
             username: username,
             password: password
         };
-        return this._http.post('http://localhost:9000/api/register', body)
+        return this._http.post('/api/register', body)
             .toPromise()
             .then(function (data) { return data; });
     };
@@ -1103,7 +1104,7 @@ var UserService = (function () {
             username: username,
             password: password
         };
-        return this._http.post('http://localhost:9000/api/login', body)
+        return this._http.post('/api/login', body)
             .map(function (res) {
             var data = res.json();
             return data;
@@ -1115,7 +1116,7 @@ var UserService = (function () {
         // });
     };
     UserService.prototype.updateUser = function (user) {
-        return this._http.put('http://localhost:9000/api/user/' + user._id, user)
+        return this._http.put('/api/user/' + user._id, user)
             .map(function (res) {
             console.log("client service");
             return "Updated";
