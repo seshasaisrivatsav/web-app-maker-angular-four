@@ -57,7 +57,14 @@ export class PageEditComponent implements OnInit {
     }
   }
 
+  // delete page based on current pageId
   deletePage(){
+
+    this._pageService.deletePage(this.pageId)
+      .subscribe(
+        (data: any) => this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page']),
+        (error: any) => console.log(error)
+      );
 
   }
 
