@@ -1,2 +1,2 @@
-Web: ng build
+web: ng build
 web: node server.js
