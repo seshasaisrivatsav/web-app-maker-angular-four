@@ -23,7 +23,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 
 // Point static path to dist -- For building
-// app.use(express.static(path.join(__dirname, 'dist')));
+app.use(express.static(path.join(__dirname, 'dist')));
 
 // CORS
 app.use(function(req, res, next) {
@@ -37,27 +37,26 @@ app.use(function(req, res, next) {
 // For Build: When we build, we serve this for dis t
 const api = require('./server/routes/api');
 // Set our api routes
-// app.use('/api', api);
+app.use('/api', api);
 
 // For Build: Catch all other routes and return the index file
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'dist/index.html'));
-// });
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist/index.html'));
+});
 
 
 // Get port from environment and store in Express.
-// const port = '9000';
-// app.set('port', port);
-app.listen(process.env.PORT || 8080);
+const port = '9000';
+app.set('port', port);
 //
 //
-// // Create HTTP server
-// const server = http.createServer(app);
-//
-//
-// // Server side API
-// var serverSide = require('./server/app');
-// serverSide(app);
-//
-// //Listen on provided port, on all network interfaces.
-// server.listen(port, () => console.log(`API running on localhost:${port}`));
+// Create HTTP server
+const server = http.createServer(app);
+
+
+// Server side API
+var serverSide = require('./server/app');
+serverSide(app);
+
+//Listen on provided port, on all network interfaces.
+server.listen(port, () => console.log(`API running on localhost:${port}`));
