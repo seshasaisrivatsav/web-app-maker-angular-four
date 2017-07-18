@@ -10,7 +10,7 @@ import 'rxjs/Rx';
 
 export class PageService {
 
-  baseUrl = 'http://localhost:9000';
+  baseUrl = '';
 
   constructor(private _http: Http) {
   }
