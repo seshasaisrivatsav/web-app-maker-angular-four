@@ -2,6 +2,19 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.1.
 
+
+
+<h1>Running the project </h1>
+
+<p>Step 1: git clone https://github.com/seshasaisrivatsav/web-app-maker-angular-four</p>
+<p>Step 2: npm install</p>
+<p>Step 3: Run the server: "nodemon server.js". This watcher constantly looks for server changes</p>
+<p>Step 4: Run the frontend: "npm start" </p>
+<p>Portal will be live on "http://localhost:4200/". API lives on port 9000</p>
+
+
+
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
