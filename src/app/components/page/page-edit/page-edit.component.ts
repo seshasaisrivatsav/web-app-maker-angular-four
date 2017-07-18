@@ -15,7 +15,7 @@ export class PageEditComponent implements OnInit {
   errFlag: boolean;
   error: string;
   alert: string;
-  page = {};
+  page = { name : ''};
 
   constructor(private _pageService: PageService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
@@ -43,8 +43,18 @@ export class PageEditComponent implements OnInit {
       );
   }
 
+  // call update page from Page Service to update the page name and title
   updatePage(){
 
+    if(this.page.name == '')
+      this.errFlag = true;
+    else {
+      this._pageService.updatePage(this.pageId, this.page)
+        .subscribe(
+          (data: any) => this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page']),
+          (error: any) => console.log(error)
+        );
+    }
   }
 
   deletePage(){
