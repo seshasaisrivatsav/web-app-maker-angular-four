@@ -18,7 +18,7 @@ export class WebsiteService{
   }
 
   findWebsiteById(websiteId){
-    return this._http.get('http://localhost:9000/api/website/'+websiteId)
+    return this._http.get(this.baseUrl+ '/api/website/'+websiteId)
       .map(
         (res: Response) => {
           const data = res.json();
@@ -31,7 +31,7 @@ export class WebsiteService{
 
     console.log("user id", userId);
 
-    var url = "http://localhost:9000/api/user/"+userId+"/website";
+    var url = this.baseUrl+ "/api/user/"+userId+"/website";
 
     console.log(url);
 
@@ -56,7 +56,7 @@ export class WebsiteService{
 
     //http://localhost:9000/api/user/59611de40e8a493006c0cebb/website
 
-    var url = 'http://localhost:9000/api/user/'+userId+'/website';
+    var url = this.baseUrl+ '/api/user/'+userId+'/website';
 
     console.log("create website in client service called", url, userId, body);
 
