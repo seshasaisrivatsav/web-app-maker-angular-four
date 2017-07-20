@@ -4,6 +4,11 @@ e2e/
 public/
 server/
 src/**
+.angular-cli.json
+karma.conf.js
+protractor.conf.js
+tsconfig.json
+tslint.json
 
 # compiled output
 /tmp
