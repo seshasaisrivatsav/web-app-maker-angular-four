@@ -1,0 +1,40 @@
+<div class="container">
+
+  <div *ngIf="errorFlag"
+       class="alert alert-danger">
+       {{errorMsg}}
+  </div>
+
+  <h1>Login</h1>
+
+  <input [(ngModel)]="username"
+           placeholder="username"
+           name="username"
+           type="text"
+           class="form-control"
+           required/>
+
+
+  <input [(ngModel)]="password"
+           placeholder="password"
+           name="password"
+           type="password"
+           class="form-control"
+           required/>
+
+
+    <button
+      class="btn btn-primary btn-block"
+      type="submit"
+     (click)="login()">Login</button>
+
+  <p></p>
+  <a class="btn btn-success btn-block"
+  [routerLink]="['/register']">Register</a>
+
+  <a class="btn btn-primary btn-block">
+    <span class="fa fa-facebook"></span>
+    Facebook
+  </a>
+
+</div>
