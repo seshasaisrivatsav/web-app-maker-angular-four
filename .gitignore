@@ -1,9 +1,9 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
-/e2e/**
-/public/**
-/server/**
-/src/**
+e2e/
+public/
+server/
+src/**
 
 # compiled output
 /tmp
