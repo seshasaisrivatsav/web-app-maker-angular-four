@@ -1,0 +1,16 @@
+language: node_js
+sudo: false
+node_js:
+- '6'
+install:
+- npm install
+script:
+- ng build
+deploy:
+  provider: heroku
+  bucket: travis-s3-demo
+  skip_cleanup: true
+  local_dir: dist
+  api_key:
+    secure: jPUEaZxVYkNsB7gNZqgb/LX33SrK8+TIeQ0B7rYE0KUkP9zE30H/PvecJUA9XzQTn33s7EhnW99/DZ2s5Fx1Kb4fTLnTkK7daKweePiXJsnMon9oRvlsW5fpryhQhIzrC9OEWgRACDd2/+OR+uml/eOBJp/mMYnAZRes8aE7xDrqiyAn9zKuM8EuZn94D6yqMCUTktoePJfXn55+K8aShoxBl4wnn/2D8xSmWcj3P7CRKFEhdMG3/iG/7GzZslLAi5TGanv9ZqMeYAej2NWO9xW8kh2zEl7kU017yQCVu+YvatkS5QmJfIM90c/bksNEo1d6iAeOAMhhNd9xqQAY9FPFGT+7bQqKVPndHZKQu/XS+4vo//ihw/zsd4Y1OQfIgMyN6eXS8sFUwZEur8VjiVTsuVYZfh+AzACYwn6bT4/4OdSMtFr0avvY1yAFOXP1zmiddBSc2XA/NBwg2S0qOXCkcBRxgZroiCNAtFlUix0rdB5A0asbeI0j9N5sHpqS//Xod5dyMUFmzKzVEg8puHUIfqa4xBzShYoV41pFoYA2KBn8Ns9lxRgaDxhxlV0/cJhtROcC1BNsY0CTRz4uyGSzUZP1mp8iZ//ifEqwf51dsDNgyliMLFXDI8XNFTDYr/kRESyBBSrWoMGtFM6qzFTZRxLV+BGspYYonCo0Kig=
+  on: heroku-deploy

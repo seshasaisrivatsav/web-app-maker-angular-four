@@ -1115,9 +1115,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var UserService = (function () {
     function UserService(_http) {
         this._http = _http;
+        this.baseUrl = '';
     }
     UserService.prototype.findUserById = function (userId) {
-        return this._http.get('http://localhost:9000/api/user/' + userId)
+        return this._http.get(this.baseUrl + '/api/user/' + userId)
             .map(function (res) {
             var data = res.json();
             return data;
@@ -1128,7 +1129,7 @@ var UserService = (function () {
             username: username,
             password: password
         };
-        return this._http.post('http://localhost:9000/api/register', body)
+        return this._http.post(this.baseUrl + '/api/register', body)
             .toPromise()
             .then(function (data) { return data; });
     };
@@ -1137,7 +1138,7 @@ var UserService = (function () {
             username: username,
             password: password
         };
-        return this._http.post('http://localhost:9000/api/login', body)
+        return this._http.post(this.baseUrl + '/api/login', body)
             .map(function (res) {
             var data = res.json();
             return data;
@@ -1149,7 +1150,7 @@ var UserService = (function () {
         // });
     };
     UserService.prototype.updateUser = function (user) {
-        return this._http.put('http://localhost:9000/api/user/' + user._id, user)
+        return this._http.put(this.baseUrl + '/api/user/' + user._id, user)
             .map(function (res) {
             console.log("client service");
             return "Updated";
@@ -1198,7 +1199,7 @@ var WebsiteService = (function () {
         this.baseUrl = 'http://localhost:9000';
     }
     WebsiteService.prototype.findWebsiteById = function (websiteId) {
-        return this._http.get('http://localhost:9000/api/website/' + websiteId)
+        return this._http.get(this.baseUrl + '/api/website/' + websiteId)
             .map(function (res) {
             var data = res.json();
             return data;
@@ -1206,7 +1207,7 @@ var WebsiteService = (function () {
     };
     WebsiteService.prototype.findWebsitesByUser = function (userId) {
         console.log("user id", userId);
-        var url = "http://localhost:9000/api/user/" + userId + "/website";
+        var url = this.baseUrl + "/api/user/" + userId + "/website";
         console.log(url);
         return this._http.get(url)
             .map(function (res) {
@@ -1222,7 +1223,7 @@ var WebsiteService = (function () {
             developerId: userId
         };
         //http://localhost:9000/api/user/59611de40e8a493006c0cebb/website
-        var url = 'http://localhost:9000/api/user/' + userId + '/website';
+        var url = this.baseUrl + '/api/user/' + userId + '/website';
         console.log("create website in client service called", url, userId, body);
         return this._http.post(url, body)
             .map(function (res) {
