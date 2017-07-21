@@ -18,6 +18,7 @@ export class UserService{
   baseUrl = environment.baseUrl;
 
 
+
   findUserById(userId : String){
     return this._http.get(this.baseUrl + '/api/user/'+userId)
       .map(
