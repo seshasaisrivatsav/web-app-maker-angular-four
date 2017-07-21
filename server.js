@@ -61,9 +61,9 @@ var serverSide = require('./server/app');
 serverSide(app);
 
 
-var PPORT = process.env.PORT || port;
+//var PPORT = process.env.PORT || port;
 
 //Listen on provided port, on all network interfaces.
-server.listen(PPORT , () => console.log(`API running on localhost:${port}`)); //-- working on heroku
+server.listen(process.env.PORT , () => console.log(`API running on localhost:${port}`)); //-- working on heroku
 //server.listen(port , () => console.log(`API running on localhost:${port}`)); //-- working on LocalHost
 
