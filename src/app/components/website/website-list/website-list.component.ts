@@ -10,10 +10,9 @@ import {ActivatedRoute} from "@angular/router";
 export class WebsiteListComponent implements OnInit {
 
   user = {};
-  userId : String;
+  userId : string;
   websites = {};
   websiteId: string;
-  sub: any;
 
   constructor(private _websiteService : WebsiteService, private activatedRoute: ActivatedRoute) { }
 
