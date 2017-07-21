@@ -5,6 +5,8 @@ module.exports= function(app, models){
 
     var websiteModel = models.websiteModel;
 
+
+
     var websites = [
         { "_id": "123", "name": "Facebook",    "developerId": "456" },
         { "_id": "234", "name": "Tweeter",     "developerId": "456" },
@@ -55,6 +57,7 @@ module.exports= function(app, models){
 
     function findAllWebsitesForUser(req,res) {
         var userId = req.params.userId;
+        console.log(userId);
 
         websiteModel
             .findAllWebsitesForUser(userId)

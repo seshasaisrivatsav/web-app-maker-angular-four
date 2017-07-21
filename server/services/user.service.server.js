@@ -215,11 +215,6 @@ module.exports = function (app, models) {
 
 
   function login(req, res) {
-    ////
-    console.log(req.body);
-
-
-    //
     userModel
       .findUserByUsername(req.body.username)
       .then(

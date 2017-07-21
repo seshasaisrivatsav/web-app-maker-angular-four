@@ -18,6 +18,15 @@ export class WebsiteListComponent implements OnInit {
 
   ngOnInit() {
     this.getUser();
+
+
+    // this._websiteService.findWebsitesByUser(this.userId)
+    //   .toPromise()
+    //   .then(data => {
+    //     this.websites = JSON.stringify(data);
+    //   })
+
+
     this._websiteService.findWebsitesByUser(this.userId)
       .subscribe(
         (data) => {

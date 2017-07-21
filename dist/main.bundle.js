@@ -903,6 +903,11 @@ var WebsiteListComponent = (function () {
     WebsiteListComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.getUser();
+        // this._websiteService.findWebsitesByUser(this.userId)
+        //   .toPromise()
+        //   .then(data => {
+        //     this.websites = JSON.stringify(data);
+        //   })
         this._websiteService.findWebsitesByUser(this.userId)
             .subscribe(function (data) {
             console.log(data);
@@ -1472,10 +1477,8 @@ var WebsiteService = (function () {
         });
     };
     WebsiteService.prototype.findWebsitesByUser = function (userId) {
-        console.log("user id", userId);
-        var url = this.baseUrl + "/api/user/" + userId + "/website";
-        console.log(url);
-        return this._http.get(url)
+        console.log(this.baseUrl + '/api/user/' + userId + '/website');
+        return this._http.get(this.baseUrl + '/api/user/' + userId + '/website')
             .map(function (res) {
             var data = res.json();
             return data;
@@ -1612,13 +1615,8 @@ var _a;
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return environment; });
-// The file contents for the current environment will overwrite these during build.
-// The build system defaults to the dev environment which uses `environment.ts`, but if you do
-// `ng build --env=prod` then `environment.prod.ts` will be used instead.
-// The list of which env maps to which file can be found in `.angular-cli.json`.
-// The file contents for the current environment will overwrite these during build.
 var environment = {
-    production: false,
+    production: true,
     baseUrl: ''
 };
 //# sourceMappingURL=environment.js.map

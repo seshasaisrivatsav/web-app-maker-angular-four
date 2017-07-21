@@ -18,7 +18,11 @@ export class WebsiteService{
 
   }
 
-  findWebsiteById(websiteId){
+
+
+
+
+  findWebsiteById(websiteId : String){
     return this._http.get(this.baseUrl+ '/api/website/'+websiteId)
       .map(
         (res: Response) => {
@@ -28,18 +32,14 @@ export class WebsiteService{
       );
   }
 
-  findWebsitesByUser(userId){
 
-    console.log("user id", userId);
-
-    var url = this.baseUrl+ "/api/user/"+userId+"/website";
-
-    console.log(url);
-
-    return this._http.get(url)
+  findWebsitesByUser(userId : String){
+    console.log(this.baseUrl+ '/api/user/'+userId+'/website');
+    return this._http.get(this.baseUrl+ '/api/user/'+userId+'/website')
       .map(
         (res: Response) => {
           const data = res.json();
+
           return data;
         }
       );
@@ -65,6 +65,7 @@ export class WebsiteService{
       .map(
         (res: Response) => {
           const data = res.json();
+
           return data;
         }
       );
