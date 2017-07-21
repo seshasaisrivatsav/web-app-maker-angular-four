@@ -49,7 +49,7 @@ app.use('/api', api);
 
 
 // Get port from environment and store in Express.
-const port = '9000';
+const port = '9000' ;
 app.set('port', port);
 
 // Create HTTP server
@@ -60,7 +60,9 @@ const server = http.createServer(app);
 var serverSide = require('./server/app');
 serverSide(app);
 
+
+var PPORT = process.env.PORT || port;
 //Listen on provided port, on all network interfaces.
-//server.listen(process.env.PORT , () => console.log(`API running on localhost:${port}`)); //-- working on heroku
-server.listen(port , () => console.log(`API running on localhost:${port}`)); //-- working on LocalHost
+server.listen(PPORT , () => console.log(`API running on localhost:${port}`)); //-- working on heroku
+//server.listen(port , () => console.log(`API running on localhost:${port}`)); //-- working on LocalHost
 
