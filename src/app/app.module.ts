@@ -17,8 +17,10 @@ import {PageNewComponent} from './components/page/page-new/page-new.component';
 import { PageListComponent } from './components/page/page-list/page-list.component';
 import { PageEditComponent } from './components/page/page-edit/page-edit.component';
 import {PageService} from './services/page.service.client';
-
-
+import { WidgetNewComponent } from './components/widget/widget-new/widget-new.component';
+import { WidgetEditComponent } from './components/widget/widget-edit/widget-edit.component';
+import { WidgetListComponent } from './components/widget/widget-list/widget-list.component';
+import {WidgetService} from "./services/widget.service.client";
 
 // add client side services to providers
 
@@ -34,7 +36,10 @@ import {PageService} from './services/page.service.client';
     WebsiteEditComponent,
     PageNewComponent,
     PageListComponent,
-    PageEditComponent
+    PageEditComponent,
+    WidgetNewComponent,
+    WidgetEditComponent,
+    WidgetListComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +47,7 @@ import {PageService} from './services/page.service.client';
     HttpModule,
     Routing
   ],
-  providers: [UserService, WebsiteService, PageService],
+  providers: [UserService, WebsiteService, PageService, WidgetService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
