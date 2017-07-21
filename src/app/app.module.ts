@@ -20,6 +20,7 @@ import {PageService} from './services/page.service.client';
 import { WidgetNewComponent } from './components/widget/widget-new/widget-new.component';
 import { WidgetEditComponent } from './components/widget/widget-edit/widget-edit.component';
 import { WidgetListComponent } from './components/widget/widget-list/widget-list.component';
+import {WidgetService} from "./services/widget.service.client";
 
 // add client side services to providers
 
@@ -46,7 +47,7 @@ import { WidgetListComponent } from './components/widget/widget-list/widget-list
     HttpModule,
     Routing
   ],
-  providers: [UserService, WebsiteService, PageService],
+  providers: [UserService, WebsiteService, PageService, WidgetService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
