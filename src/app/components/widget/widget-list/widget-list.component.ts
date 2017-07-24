@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgSwitch } from '@angular/common';
 import {ActivatedRoute} from "@angular/router";
+import {WidgetService} from "../../../services/widget.service.client";
 
 @Component({
   selector: 'app-widget-list',
@@ -9,12 +10,13 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class WidgetListComponent implements OnInit {
 
-  widget = { size: "1" };
+  widgets = [{}];
+  widget = {};
   userId: string;
   websiteId: string;
   pageId: string;
 
-  constructor(private activatedRoute: ActivatedRoute) { }
+  constructor(private activatedRoute: ActivatedRoute, private widgetService: WidgetService) { }
 
   ngOnInit() {
 
@@ -25,6 +27,14 @@ export class WidgetListComponent implements OnInit {
           this.userId = params['userId'];
           this.websiteId = params['websiteId'];
           this.pageId = params['pageId'];
+        }
+      );
+
+    this.widgetService.findWidgetsByPageId(this.pageId)
+      .subscribe(
+        (data: any) => {
+          console.log(data);
+          this.widgets = data;
         }
       );
 
