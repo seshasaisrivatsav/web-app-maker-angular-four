@@ -36,8 +36,8 @@
         <span class="glyphicon glyphicon-align-justify"></span>
       </div>
 
-      <div *ngSwitchCase="HEADER">
-        <div [ngSwitch]="widget.sieze">
+      <div *ngSwitchCase="Header">
+        <div [ngSwitch]="widget.size">
           <h1 *ngSwitchCase="1">{{widget.text}}</h1>
           <h2 *ngSwitchCase="2">{{widget.text}}</h2>
           <h3 *ngSwitchCase="3">{{widget.text}}</h3>
@@ -47,12 +47,12 @@
         </div>
       </div>
 
-      <div *ngSwitchCase="YOUTUBE">
+      <div *ngSwitchCase="YouTube">
         <iframe width="560" height="315" ngTemplateOutlet="{{model.checkSafeYoutubeUrl(widget.url)}}" frameborder="0" allowfullscreen></iframe>
       </div>
 
-      <div *ngSwitchCase="IMAGE">
-        image
+      <div *ngSwitchCase="Image">
+        <img [src] = "widget.url" width= "widget.width"/>
       </div>
 
       <div *ngSwitchCase="HTML" [innerHTML]="checkSafeHtml(widget.text)"></div>
