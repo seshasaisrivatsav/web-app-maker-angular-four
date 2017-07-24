@@ -1,6 +1,6 @@
 <nav class="navbar navbar-default navbar-fixed-top navbar-page-pages">
   <div class="container-fluid">
-    <div class="navbar-header complete-width">
+
 
       <p class="navbar-text pull-left ">
         <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget']" class="navbar-link">
@@ -19,12 +19,12 @@
         </a>
       </p>
 
-    </div>
+
   </div>
 </nav>
 
 <div class="container">
-  <form action="/api/upload"  method="post" enctype="multipart/form-data">
+  <form ngNoForm action="{{baseUrl}}/api/upload"  method="post" enctype="multipart/form-data">
 
     <div class="form-group">
       <label for="name">Name</label>
@@ -58,10 +58,10 @@
 
 
     <input  name="myFile"   type="file" class="form-control"/>
-    <input  name="widgetId" value="{{model.widget._id}}"   style="display: none"/>
-    <input  name="websiteId" value="{{model.websiteId}}"   style="display: none"/>
-    <input  name="pageId" value="{{model.pageId}}"   style="display: none"/>
-    <input  name="userId" value="{{model.userId}}"   style="display: none"/>
+    <input  name="widgetId" value="{{widgetId}}"   style="display: none"/>
+    <input  name="websiteId" value="{{websiteId}}"   style="display: none"/>
+    <input  name="pageId" value="{{pageId}}"   style="display: none"/>
+    <input  name="userId" value="{{userId}}"   style="display: none"/>
     <button type="submit" class="btn btn-block btn-primary">Upload Image</button>
     <br/>
 
@@ -72,7 +72,7 @@
 
   <a class="btn btn-danger  btn-block"
      (click)="deleteWidget()"
-     href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">Delete</a>
+     [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget']">Delete</a>
 
   <!--</form>-->
 </div>
