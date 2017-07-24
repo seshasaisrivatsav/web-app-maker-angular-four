@@ -15,7 +15,7 @@ export class PageEditComponent implements OnInit {
   errFlag: boolean;
   error: string;
   alert: string;
-  page = { name : ''};
+  page = {name: ''};
 
   constructor(private _pageService: PageService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
