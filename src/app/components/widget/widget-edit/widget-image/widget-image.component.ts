@@ -22,7 +22,7 @@ export class WidgetImageComponent implements OnInit {
   ngOnInit() {
 
     // fetching baseUrl to server
-    this.baseUrl = environment.baseUrl;
+    //this.baseUrl = environment.baseUrl;
 
     // fetching all ids from route params
     this.activatedRoute.params
