@@ -50,7 +50,7 @@ export class WidgetService{
     return this._http.put(url, widget)
       .map(
         (res: Response) => {
-          const data = res.json();
+          const data = res;
           return data;
         }
       );
