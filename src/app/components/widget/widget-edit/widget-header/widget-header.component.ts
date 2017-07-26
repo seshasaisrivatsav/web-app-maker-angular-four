@@ -10,6 +10,9 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class WidgetHeaderComponent implements OnInit {
 
+  flag = false; // setting error flag as false by default
+  error: string;
+  alert: string;
   userId: string;
   websiteId: string;
   pageId: string;
@@ -19,6 +22,10 @@ export class WidgetHeaderComponent implements OnInit {
   constructor(private widgetService: WidgetService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+
+    // initialize error and alert text
+    this.error = 'Enter the name of the widget';
+    this.alert = '* Enter the widget name';
 
     this.activatedRoute.params
       .subscribe(
@@ -39,11 +46,16 @@ export class WidgetHeaderComponent implements OnInit {
 
   updateWidget() {
 
+    // if name field is undefined then set error 'flag' to true making 'error' and 'alert' message visible
+    if (this.widget['name'] === undefined) {
+      this.flag = true;
+    } else {
     this.widgetService.updateWidget(this.widgetId, this.widget)
       .subscribe(
         (data: any) => this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']),
         (error: any) => console.log(error)
       );
+    }
   }
 
 }

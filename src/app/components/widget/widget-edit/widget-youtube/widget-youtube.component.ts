@@ -23,8 +23,8 @@ export class WidgetYoutubeComponent implements OnInit {
   ngOnInit() {
 
     // initialize error and alert text
-    this.error = 'Enter the name of the website';
-    this.alert = '* Enter the website name';
+    this.error = 'Enter the name of the widget';
+    this.alert = '* Enter the widget name';
 
     // fetch ids from current url
     this.activatedRoute.params

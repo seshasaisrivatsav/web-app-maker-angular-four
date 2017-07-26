@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-fixed-top navbar-page-pages">
+<nav class="navbar-default navbar-fixed-top navbar-page-pages">
   <div class="container-fluid">
     <!--<div class="navbar-header complete-width">-->
 
@@ -49,9 +49,7 @@
         </div>
 
         <div *ngSwitchCase="'YouTube'">
-
           <iframe width="560" height="315" [src]="widget.url | safe" frameborder="0" allowfullscreen></iframe>
-
         </div>
 
         <div *ngSwitchCase="'Image'">
@@ -65,6 +63,8 @@
     </div>
 
   </div>
+
+</div>
 
   <nav class="navbar navbar-default navbar-fixed-bottom navbar-page-pages">
     <div class="container-fluid">
