@@ -169,10 +169,10 @@ module.exports= function(app, models){
     function deleteWidget (req,res) {
         var widgetId  = req.params.widgetId;
         var pageId = req.query.pageId;
-        var position = req.query.postobedeleted;
-        widgetModel
-            .updatePosition(pageId, position)
-            .then(function (stats) {
+        // var position = req.query.postobedeleted;
+        // widgetModel
+        //     .updatePosition(pageId, position)
+        //     .then(function (stats) {
                 widgetModel
                     .deleteWidget(widgetId)
                     .then (function (stats) {
@@ -182,11 +182,9 @@ module.exports= function(app, models){
                         function (err) {
                             res.sendStatus(404).send(err);
                         });
-            });
+            // });
 
 
 
     }
-
-
 };
