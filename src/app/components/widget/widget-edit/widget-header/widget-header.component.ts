@@ -58,4 +58,15 @@ export class WidgetHeaderComponent implements OnInit {
     }
   }
 
+  deleteWidget() {
+
+    // call delete widget function from widget client service
+    this.widgetService.deleteWidget(this.widgetId)
+      .subscribe(
+        (data: any) => this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']),
+        (error: any) => console.log(error)
+      );
+
+  }
+
 }

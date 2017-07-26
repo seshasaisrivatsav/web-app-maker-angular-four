@@ -40,23 +40,4 @@ export class WidgetListComponent implements OnInit {
 
   }
 
-  checkSafeHtml(html) {
-
-    // var html = this.widget.text;
-    // return $sce.trustAsHtml(html);
-  }
-
-  checkSafeYoutubeUrl() {
-
-    return 'https://www.youtube.com/embed/watch?v=e3VsKheoeBE';
-
-    // console.log(url);
-    //
-    // var parts = url.split('/');
-    // var id = parts[parts.length - 1];
-    // url = "https://www.youtube.com/embed/" +id;
-    // console.log(url);
-    // return this.sanatiizer.bypassSecurityTrustUrl(url);
-  }
-
 }
