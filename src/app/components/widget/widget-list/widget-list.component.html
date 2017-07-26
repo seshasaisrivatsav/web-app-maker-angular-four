@@ -50,9 +50,7 @@
 
         <div *ngSwitchCase="'YouTube'">
 
-          <iframe width="560" height="315" [src]="widget.url | safe"></iframe>
-
-          <!--<iframe width="560" height="315" *ngTemplateOutlet="'https://www.youtube.com/embed/watch?v=e3VsKheoeBE'" frameborder="0" allowfullscreen></iframe>-->
+          <iframe width="560" height="315" [src]="widget.url | safe" frameborder="0" allowfullscreen></iframe>
 
         </div>
 

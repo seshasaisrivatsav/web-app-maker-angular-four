@@ -9,11 +9,11 @@ export class SafePipe implements PipeTransform {
   constructor(private sanitizer: DomSanitizer) {}
   transform(url) {
 
-    console.log("before split: ", url);
+    // splitting input url on '='
+    // the result is two elements in the output array
     var parts = url.split("=");
     var id = parts[1];
     url = "https://www.youtube.com/embed/" +id;
-    console.log(url);
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 }
