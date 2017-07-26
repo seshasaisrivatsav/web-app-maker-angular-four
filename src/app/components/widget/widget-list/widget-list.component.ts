@@ -33,8 +33,8 @@ export class WidgetListComponent implements OnInit {
     this.widgetService.findWidgetsByPageId(this.pageId)
       .subscribe(
         (data: any) => {
-          console.log(data);
           this.widgets = data;
+          console.log(this.widgets);
         }
       );
 

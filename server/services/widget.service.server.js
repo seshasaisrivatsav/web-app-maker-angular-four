@@ -25,7 +25,7 @@ module.exports= function(app, models){
      app.get("/api/user/:userId", findUserById);
      are the same URLs to Express!     */
     function uploadImage(req, res) {
-         var userId = req.body.userId;
+        var userId = req.body.userId;
         var websiteId = req.body.websiteId;
         var pageId = req.body.pageId;
 
@@ -34,10 +34,10 @@ module.exports= function(app, models){
         var width         = req.body.width;
         var myFile        = req.file;
 
-        if(myFile == null) {
-            res.redirect("/assignment/#/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId);
-            return;
-        }
+        // if(myFile == null) {
+        //     res.redirect("/assignment/#/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId);
+        //     return;
+        // }
 
 
         var originalname  = myFile.originalname; // file name on user's computer
@@ -48,7 +48,7 @@ module.exports= function(app, models){
         var mimetype      = myFile.mimetype;
 
 
-        var widget = { url: "/uploads/"+filename};
+        var widget = { url: "/public/uploads/"+filename};
 
         widgetModel
             .updateWidget(widgetId, widget)
@@ -69,7 +69,7 @@ module.exports= function(app, models){
     //     }
     // }
 
-        res.redirect("/assignment/#/user/"+userId +"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId);
+        //res.redirect("/assignment/#/user/"+userId +"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId);
     }
 
 
@@ -94,7 +94,7 @@ module.exports= function(app, models){
         var pageId = req.params.pageId;
         var widget = req.body;
 
-        
+
         widgetModel
             .createWidget(pageId, widget)
             .then(function (widget) {
@@ -133,7 +133,7 @@ module.exports= function(app, models){
     }
     function findWidgetById (req,res) {
         var widgetId  = req.params.widgetId;
-        
+
         widgetModel
             .findWidgetById(widgetId)
             .then(function (widget) {
@@ -183,7 +183,7 @@ module.exports= function(app, models){
                             res.sendStatus(404).send(err);
                         });
             });
-       
+
 
 
     }
