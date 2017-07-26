@@ -26,6 +26,7 @@ import { WidgetHeaderComponent } from './components/widget/widget-edit/widget-he
 import { WidgetHtmlComponent } from './components/widget/widget-edit/widget-html/widget-html.component';
 import { WidgetImageComponent } from './components/widget/widget-edit/widget-image/widget-image.component';
 import { WidgetTextComponent } from './components/widget/widget-edit/widget-text/widget-text.component';
+import {SafePipe} from "./components/widget/widget-list/safe-pipe.pipe";
 
 // add client side services to providers
 
@@ -49,7 +50,8 @@ import { WidgetTextComponent } from './components/widget/widget-edit/widget-text
     WidgetHeaderComponent,
     WidgetHtmlComponent,
     WidgetImageComponent,
-    WidgetTextComponent
+    WidgetTextComponent,
+    SafePipe
   ],
   imports: [
     BrowserModule,

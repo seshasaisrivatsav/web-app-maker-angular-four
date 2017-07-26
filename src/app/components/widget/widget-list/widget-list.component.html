@@ -49,7 +49,11 @@
         </div>
 
         <div *ngSwitchCase="'YouTube'">
-          <!--<iframe width="560" height="315" ngTemplateOutlet="{{model.checkSafeYoutubeUrl(widget.url)}}" frameborder="0" allowfullscreen></iframe>-->
+
+          <iframe width="560" height="315" [src]="widget.url | safe"></iframe>
+
+          <!--<iframe width="560" height="315" *ngTemplateOutlet="'https://www.youtube.com/embed/watch?v=e3VsKheoeBE'" frameborder="0" allowfullscreen></iframe>-->
+
         </div>
 
         <div *ngSwitchCase="'Image'">
