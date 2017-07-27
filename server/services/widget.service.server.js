@@ -34,10 +34,10 @@ module.exports= function(app, models){
         var width         = req.body.width;
         var myFile        = req.file;
 
-        // if(myFile == null) {
-        //     res.redirect("/assignment/#/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId);
-        //     return;
-        // }
+        if(myFile == null) {
+            res.redirect("http://localhost:4200/user/"+userId +"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId);
+            return;
+        }
 
 
         var originalname  = myFile.originalname; // file name on user's computer
@@ -60,18 +60,8 @@ module.exports= function(app, models){
                     res.sendStatus(404).send(err);
                 });
 
-
-        // for (var i in widgets){
-    //     if(widgets[i]._id === widgetId){
-    //         widgets[i].url = "/uploads/"+filename;
-    //
-    //
-    //     }
-    // }
-
-        //res.redirect("/assignment/#/user/"+userId +"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId);
+        res.redirect("http://localhost:4200/user/"+userId +"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId);
     }
-
 
 
     function reorderWidgets(req,res) {

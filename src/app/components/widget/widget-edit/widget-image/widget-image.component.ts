@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {WidgetService} from '../../../../services/widget.service.client';
 import {environment} from '../../../../../environments/environment';
 
@@ -10,6 +10,7 @@ import {environment} from '../../../../../environments/environment';
 })
 export class WidgetImageComponent implements OnInit {
 
+  flag = false;
   widget = {};
   userId: string;
   websiteId: string;
@@ -17,7 +18,7 @@ export class WidgetImageComponent implements OnInit {
   widgetId: string;
   baseUrl: string;
 
-  constructor(private activatedRoute: ActivatedRoute, private widgetService: WidgetService) { }
+  constructor(private activatedRoute: ActivatedRoute, private widgetService: WidgetService, private router: Router) { }
 
   ngOnInit() {
 
@@ -35,9 +36,33 @@ export class WidgetImageComponent implements OnInit {
         }
       );
 
+    // fetching current widget based on widgetId
     this.widgetService.findWidgetById(this.widgetId)
       .subscribe(
         (data: any) => this.widget = data,
+        (error: any) => console.log(error)
+      );
+
+  }
+
+  updateWidget() {
+
+    // if name field is undefined then set error 'flag' to true making 'error' and 'alert' message visible
+
+      this.widgetService.updateWidget(this.widgetId, this.widget)
+        .subscribe(
+          (data: any) => this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']),
+          (error: any) => console.log(error)
+        );
+
+  }
+
+  deleteWidget() {
+
+    // call delete widget function from widget client service
+    this.widgetService.deleteWidget(this.widgetId)
+      .subscribe(
+        (data: any) => this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']),
         (error: any) => console.log(error)
       );
 
