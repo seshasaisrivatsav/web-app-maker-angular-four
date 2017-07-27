@@ -23,10 +23,16 @@
 
 <div class="container">
   <form>
+    <div *ngIf=flag
+         class="alert alert-danger">
+      {{error}}
+    </div>
     <div class="form-group">
       <label for="name">Name</label>
       <input type="text" class="form-control" id="name" name="name" placeholder="Name" [(ngModel)]="widget.name">
     </div>
+    <span class="alert-class"
+          *ngIf=flag>{{alert}}</span>
 
     <div class="form-group">
       <label for="text">Text</label>
@@ -51,7 +57,7 @@
     <div class="navbar-footer">
 
       <p class="navbar-text pull-right">
-        <a [routerLink]="['/user']" class="navbar-link">
+        <a [routerLink]="['/profile']" class="navbar-link">
           <span class="glyphicon glyphicon-user glyphicon-user-page-pages pull-right"> </span>
         </a>
       </p>

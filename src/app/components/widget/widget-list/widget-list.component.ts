@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgSwitch } from '@angular/common';
+import { DomSanitizer } from '@angular/platform-browser';
 import {ActivatedRoute} from "@angular/router";
 import {WidgetService} from "../../../services/widget.service.client";
 
@@ -16,7 +16,7 @@ export class WidgetListComponent implements OnInit {
   websiteId: string;
   pageId: string;
 
-  constructor(private activatedRoute: ActivatedRoute, private widgetService: WidgetService) { }
+  constructor(private activatedRoute: ActivatedRoute, private widgetService: WidgetService, private sanatiizer: DomSanitizer) { }
 
   ngOnInit() {
 
@@ -33,26 +33,11 @@ export class WidgetListComponent implements OnInit {
     this.widgetService.findWidgetsByPageId(this.pageId)
       .subscribe(
         (data: any) => {
-          console.log(data);
           this.widgets = data;
+          console.log(this.widgets);
         }
       );
 
-  }
-
-  checkSafeHtml(html) {
-
-    // var html = this.widget.text;
-    // return $sce.trustAsHtml(html);
-  }
-
-  checkSafeYoutubeUrl(url) {
-
-    // var parts = url.split('/');
-    // var id = parts[parts.length - 1];
-    // url = "https://www.youtube.com/embed/" +id;
-    // console.log(url);
-    // return $sce.trustAsResourceUrl(url);
   }
 
 }

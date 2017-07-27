@@ -25,7 +25,7 @@ module.exports= function(app, models){
      app.get("/api/user/:userId", findUserById);
      are the same URLs to Express!     */
     function uploadImage(req, res) {
-         var userId = req.body.userId;
+        var userId = req.body.userId;
         var websiteId = req.body.websiteId;
         var pageId = req.body.pageId;
 
@@ -35,7 +35,7 @@ module.exports= function(app, models){
         var myFile        = req.file;
 
         if(myFile == null) {
-            res.redirect("/assignment/#/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId);
+            res.redirect("http://localhost:4200/user/"+userId +"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId);
             return;
         }
 
@@ -48,7 +48,7 @@ module.exports= function(app, models){
         var mimetype      = myFile.mimetype;
 
 
-        var widget = { url: "/uploads/"+filename};
+        var widget = { url: "/public/uploads/"+filename};
 
         widgetModel
             .updateWidget(widgetId, widget)
@@ -60,18 +60,8 @@ module.exports= function(app, models){
                     res.sendStatus(404).send(err);
                 });
 
-
-        // for (var i in widgets){
-    //     if(widgets[i]._id === widgetId){
-    //         widgets[i].url = "/uploads/"+filename;
-    //
-    //
-    //     }
-    // }
-
-        res.redirect("/assignment/#/user/"+userId +"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId);
+        res.redirect("http://localhost:4200/user/"+userId +"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId);
     }
-
 
 
     function reorderWidgets(req,res) {
@@ -94,7 +84,7 @@ module.exports= function(app, models){
         var pageId = req.params.pageId;
         var widget = req.body;
 
-        
+
         widgetModel
             .createWidget(pageId, widget)
             .then(function (widget) {
@@ -133,7 +123,7 @@ module.exports= function(app, models){
     }
     function findWidgetById (req,res) {
         var widgetId  = req.params.widgetId;
-        
+
         widgetModel
             .findWidgetById(widgetId)
             .then(function (widget) {
@@ -169,10 +159,10 @@ module.exports= function(app, models){
     function deleteWidget (req,res) {
         var widgetId  = req.params.widgetId;
         var pageId = req.query.pageId;
-        var position = req.query.postobedeleted;
-        widgetModel
-            .updatePosition(pageId, position)
-            .then(function (stats) {
+        // var position = req.query.postobedeleted;
+        // widgetModel
+        //     .updatePosition(pageId, position)
+        //     .then(function (stats) {
                 widgetModel
                     .deleteWidget(widgetId)
                     .then (function (stats) {
@@ -182,11 +172,9 @@ module.exports= function(app, models){
                         function (err) {
                             res.sendStatus(404).send(err);
                         });
-            });
-       
+            // });
+
 
 
     }
-
-
 };
