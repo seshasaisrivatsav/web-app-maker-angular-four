@@ -9,7 +9,7 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class PageListComponent implements OnInit {
 
-  pages = {};
+  pages = [{}];
   websiteId: string;
   userId: string;
 

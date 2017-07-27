@@ -11,7 +11,7 @@ export class WebsiteListComponent implements OnInit {
 
   user = {};
   userId : String;
-  websites = {};
+  websites = [{}];
   websiteId: string;
   sub: any;
 
