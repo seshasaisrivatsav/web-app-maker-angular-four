@@ -6,7 +6,7 @@ module.exports= function(app, models){
     var widgetModel = models.widgetModel;
 
     var multer = require('multer'); // npm install multer --save
-    var upload = multer({ dest: __dirname+'/../../public/uploads' });
+    var upload = multer({ dest: __dirname+'/../../src/assets/uploads' });
     /* John pappy's - declare APIs at top and write functions below */
 
 
@@ -48,7 +48,7 @@ module.exports= function(app, models){
         var mimetype      = myFile.mimetype;
 
 
-        var widget = { url: "/public/uploads/"+filename};
+        var widget = { url: "assets/uploads/"+filename};
 
         widgetModel
             .updateWidget(widgetId, widget)
