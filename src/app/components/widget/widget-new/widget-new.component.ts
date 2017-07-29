@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {WidgetService} from "../../../services/widget.service.client";
-import {ActivatedRoute, Router} from "@angular/router";
+import {WidgetService} from '../../../services/widget.service.client';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-widget-new',
@@ -42,6 +42,8 @@ export class WidgetNewComponent implements OnInit {
   createWidget(widgetType) {
 
     this.widget = this.defaultWidgetValues[widgetType];
+
+    console.log(this.widget);
 
     this.widgetService.createWidget(this.pageId, this.widget)
       .subscribe(

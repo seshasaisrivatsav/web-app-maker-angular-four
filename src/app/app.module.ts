@@ -20,7 +20,13 @@ import {PageService} from './services/page.service.client';
 import { WidgetNewComponent } from './components/widget/widget-new/widget-new.component';
 import { WidgetEditComponent } from './components/widget/widget-edit/widget-edit.component';
 import { WidgetListComponent } from './components/widget/widget-list/widget-list.component';
-import {WidgetService} from "./services/widget.service.client";
+import {WidgetService} from './services/widget.service.client';
+import { WidgetYoutubeComponent } from './components/widget/widget-edit/widget-youtube/widget-youtube.component';
+import { WidgetHeaderComponent } from './components/widget/widget-edit/widget-header/widget-header.component';
+import { WidgetHtmlComponent } from './components/widget/widget-edit/widget-html/widget-html.component';
+import { WidgetImageComponent } from './components/widget/widget-edit/widget-image/widget-image.component';
+import { WidgetTextComponent } from './components/widget/widget-edit/widget-text/widget-text.component';
+import {SafePipe} from "./components/widget/widget-list/safe-pipe.pipe";
 
 // add client side services to providers
 
@@ -39,7 +45,13 @@ import {WidgetService} from "./services/widget.service.client";
     PageEditComponent,
     WidgetNewComponent,
     WidgetEditComponent,
-    WidgetListComponent
+    WidgetListComponent,
+    WidgetYoutubeComponent,
+    WidgetHeaderComponent,
+    WidgetHtmlComponent,
+    WidgetImageComponent,
+    WidgetTextComponent,
+    SafePipe
   ],
   imports: [
     BrowserModule,

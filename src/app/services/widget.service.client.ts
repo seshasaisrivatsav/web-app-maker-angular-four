@@ -50,18 +50,18 @@ export class WidgetService{
     return this._http.put(url, widget)
       .map(
         (res: Response) => {
-          const data = res.json();
+          const data = res;
           return data;
         }
       );
   }
 
-  deleteWidget(widgetId,pageId, position) {
-    var url = this.baseUrl+"/api/widget/"+widgetId+"?pageId="+pageId+"&postobedeleted="+position;
+  deleteWidget(widgetId) {
+    var url = this.baseUrl+"/api/widget/"+widgetId;
     return this._http.delete(url)
       .map(
         (res: Response) => {
-          const data = res.json();
+          const data = res;
           return data;
         }
       );

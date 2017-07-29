@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-fixed-top navbar-page-pages">
+<nav class="navbar-default navbar-fixed-top navbar-page-pages">
   <div class="container-fluid">
     <!--<div class="navbar-header complete-width">-->
 
@@ -24,42 +24,47 @@
 
 <div class="container">
 
-  <div [ngSwitch]="widget.widgetType"
-       *ngFor="let widget of widgets">
+  <div *ngFor="let widget of widgets">
 
-    <div class="jga-widget">
+    <div [ngSwitch]="widget.type">
 
-      <div class="jga-widget-tool">
-        <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget', widget._id]">
-          <span class="glyphicon glyphicon-cog"> </span>
-        </a>
-        <span class="glyphicon glyphicon-align-justify"></span>
-      </div>
+      <div class="jga-widget">
 
-      <div *ngSwitchCase="HEADER">
-        <div [ngSwitch]="widget.sieze">
-          <h1 *ngSwitchCase="1">{{widget.text}}</h1>
-          <h2 *ngSwitchCase="2">{{widget.text}}</h2>
-          <h3 *ngSwitchCase="3">{{widget.text}}</h3>
-          <h4 *ngSwitchCase="4">{{widget.text}}</h4>
-          <h5 *ngSwitchCase="5">{{widget.text}}</h5>
-          <h6 *ngSwitchCase="6">{{widget.text}}</h6>
+        <div class="jga-widget-tool">
+          <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget', widget._id]">
+            <span class="glyphicon glyphicon-cog"> </span>
+          </a>
+          <span class="glyphicon glyphicon-align-justify"></span>
         </div>
-      </div>
 
-      <div *ngSwitchCase="YOUTUBE">
-        <iframe width="560" height="315" ngTemplateOutlet="{{model.checkSafeYoutubeUrl(widget.url)}}" frameborder="0" allowfullscreen></iframe>
-      </div>
+        <div *ngSwitchCase="'Header'">
+          <div [ngSwitch]="widget.size">
+            <h1 *ngSwitchCase="1">{{widget.text}}</h1>
+            <h2 *ngSwitchCase="2">{{widget.text}}</h2>
+            <h3 *ngSwitchCase="3">{{widget.text}}</h3>
+            <h4 *ngSwitchCase="4">{{widget.text}}</h4>
+            <h5 *ngSwitchCase="5">{{widget.text}}</h5>
+            <h6 *ngSwitchCase="6">{{widget.text}}</h6>
+          </div>
+        </div>
 
-      <div *ngSwitchCase="IMAGE">
-        image
-      </div>
+        <div *ngSwitchCase="'YouTube'">
+          <iframe width="560" height="315" [src]="widget.url | safe" frameborder="0" allowfullscreen></iframe>
+        </div>
 
-      <div *ngSwitchCase="HTML" [innerHTML]="checkSafeHtml(widget.text)"></div>
+        <div *ngSwitchCase="'Image'">
+          <img [src] = "widget.url" width= "widget.width"/>
+        </div>
+
+        <!--<div *ngSwitchCase="HTML" [innerHTML]="checkSafeHtml(widget.text)"></div>-->
+
+      </div>
 
     </div>
 
   </div>
+
+</div>
 
   <nav class="navbar navbar-default navbar-fixed-bottom navbar-page-pages">
     <div class="container-fluid">
