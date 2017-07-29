@@ -35,11 +35,11 @@ app.use(function(req, res, next) {
 
 
 // For Build: When we build, we serve this for dist
-// const api = require('./server/routes/api');
+const api = require('./server/routes/api');
 
 
 // Set our api routes
-// app.use('/api', api);
+app.use('/api', api);
 
 
 // Get port from environment and store in Express.
@@ -57,15 +57,15 @@ serverSide(app);
 
 
 // For Build: Catch all other routes and return the index file
-// app.use('*', function (req, res) {
-//   const index = path.join(__dirname, 'dist', 'index.html');
-//   res.sendFile(index);
-// });
+app.use('*', function (req, res) {
+  const index = path.join(__dirname, 'dist', 'index.html');
+  res.sendFile(index);
+});
 
 
 
 var PPORT = process.env.PORT || port;
 
 //Listen on provided port, on all network interfaces.
-//server.listen(process.env.PORT , () => console.log(`API running on localhost:${port}`)); //-- working on heroku
-server.listen(PPORT , () => console.log(`API running on localhost:${port}`)); //-- working on LocalHost
+server.listen(process.env.PORT , () => console.log(`API running on localhost:${port}`)); //-- working on heroku
+//server.listen(PPORT , () => console.log(`API running on localhost:${port}`)); //-- working on LocalHost
