@@ -28,8 +28,6 @@ export class LoginComponent implements OnInit {
 
   login() {
 
-    console.log("called");
-
     // fetching data from loginForm
     this.username = this.loginForm.value.username;
     this.password = this.loginForm.value.password;

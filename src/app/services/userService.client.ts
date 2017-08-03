@@ -37,8 +37,14 @@ export class UserService{
     };
 
     return this._http.post(this.baseUrl + '/api/register', body)
-       .toPromise()
-       .then(data => {return data});
+      .map(
+        (res: Response) => {
+          const data = res.json();
+          return data;
+        }
+      );
+       // .toPromise()
+       // .then(data => {return data});
 
   }
 
