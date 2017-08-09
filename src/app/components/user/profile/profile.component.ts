@@ -28,22 +28,22 @@ export class ProfileComponent implements OnInit {
 
   }
 
-  logout(){
+  logout() {
     localStorage.clear();
   }
 
 
-  getUser(){
+  getUser() {
     this.user = JSON.parse(localStorage.getItem("user"));
     this.username = this.user['username'];
     this.firstName = this.user['firstName'];
-    this.lastName= this.user['lastName'];
+    this.lastName = this.user['lastName'];
     this.email = this.user['email'];
     this.userId = this.user['_id'];
   }
 
 
-  updateUser(){
+  updateUser() {
     let updatedUser = {
       _id : this.user['_id'],
       username : this.username,
@@ -55,29 +55,29 @@ export class ProfileComponent implements OnInit {
 
 
     this._UserService.updateUser(updatedUser)
-      // .subscribe(
-    //   (data: any)=>{
-    //     this._UserService.findUserById(updatedUser._id)
-    //       .subscribe(
-    //         (data: any) => {
-    //           console.log(data);
-    //           localStorage.setItem('user', JSON.stringify(data));
-    //           this.ngOnInit();
-    //         }
-    //       )
-    //   },
-    //   (error: any) => this.errorFlag = true
-    // );
-      .toPromise()
-      .then( data => {
+      .subscribe(
+      (data: any) => {
         this._UserService.findUserById(updatedUser._id)
-          .toPromise()
-          .then( data => {
-            localStorage.setItem('user', JSON.stringify(data));
-
-            this.ngOnInit();
-          })
-      })
+          .subscribe(
+            (data: any) => {
+              console.log(data);
+              localStorage.setItem('user', JSON.stringify(data));
+              this.ngOnInit();
+            }
+          )
+      },
+      (error: any) => this.errorFlag = true
+    );
+      // .toPromise()
+      // .then( data => {
+      //   this._UserService.findUserById(updatedUser._id)
+      //     .toPromise()
+      //     .then( data => {
+      //       localStorage.setItem('user', JSON.stringify(data));
+      //
+      //       this.ngOnInit();
+      //     })
+      // })
   }
 
 }

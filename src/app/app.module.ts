@@ -26,7 +26,8 @@ import { WidgetHeaderComponent } from './components/widget/widget-edit/widget-he
 import { WidgetHtmlComponent } from './components/widget/widget-edit/widget-html/widget-html.component';
 import { WidgetImageComponent } from './components/widget/widget-edit/widget-image/widget-image.component';
 import { WidgetTextComponent } from './components/widget/widget-edit/widget-text/widget-text.component';
-import {SafePipe} from "./components/widget/widget-list/safe-pipe.pipe";
+import {SafePipe} from './components/widget/widget-list/safe-pipe.pipe';
+import {AuthGaurd} from './AuthGaurd';
 
 // add client side services to providers
 
@@ -59,7 +60,9 @@ import {SafePipe} from "./components/widget/widget-list/safe-pipe.pipe";
     HttpModule,
     Routing
   ],
-  providers: [UserService, WebsiteService, PageService, WidgetService],
+  providers: [UserService, WebsiteService, PageService, WidgetService, AuthGaurd, { provide: 'AuthGaurd1', useValue: () => false}],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+}

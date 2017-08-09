@@ -16,10 +16,11 @@ import {PageNewComponent} from "./components/page/page-new/page-new.component";
 import {WidgetListComponent} from "./components/widget/widget-list/widget-list.component";
 import {WidgetNewComponent} from "./components/widget/widget-new/widget-new.component";
 import {WidgetEditComponent} from "./components/widget/widget-edit/widget-edit.component";
-const APP_ROUTES : Routes = [
+//import {AuthGaurd} from './AuthGaurd';
+const APP_ROUTES: Routes = [
   {path: '', component : LoginComponent},
   {path: 'login', component : LoginComponent},
-  {path: 'register', component: RegisterComponent},
+  {path: 'register', component: RegisterComponent, canActivate: ['AuthGaurd1']},
   {path: 'profile', component: ProfileComponent},
   {path: 'user/:userId/website', component: WebsiteListComponent},
   {path: 'user/:userId/website/new', component: WebsiteNewComponent},

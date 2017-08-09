@@ -16,11 +16,9 @@ var connectionString = 'mongodb://webappmaker:webappmaker@ds163181.mlab.com:6318
 var mongoose = require("mongoose");
 mongoose.connect(connectionString);
 
-
 // Parsers for POST data
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
 
 // Point static path to dist -- For building
 // app.use(express.static(path.join(__dirname, 'dist')));
@@ -33,10 +31,8 @@ app.use(function(req, res, next) {
   next();
 });
 
-
 // For Build: When we build, we serve this for dist
 const api = require('./server/routes/api');
-
 
 // Set our api routes
 app.use('/api', api);
