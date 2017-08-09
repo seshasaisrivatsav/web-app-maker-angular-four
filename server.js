@@ -10,6 +10,21 @@ const http = require('http');
 const bodyParser = require('body-parser');
 const app = express();
 
+// loading authentication modules
+const passport      = require('passport');
+const cookieParser  = require('cookie-parser');
+const session       = require('express-session');
+
+app.use(session({
+  secret: 'this is the secret',
+  resave: true,
+  saveUninitialized: true
+}));
+
+app.use(cookieParser());
+app.use(passport.initialize());
+app.use(passport.session());
+
 /* Mongodb    */
 // var connectionString = 'mongodb://127.0.0.1:27017/taportal';
 var connectionString = 'mongodb://webappmaker:webappmaker@ds163181.mlab.com:63181/webappmaker';
