@@ -1,7 +1,6 @@
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
-
 var bcrypt = require("bcrypt-nodejs");
 
 /* unlike angular, if w e ask by name, we cant get it */
@@ -9,59 +8,45 @@ var bcrypt = require("bcrypt-nodejs");
 module.exports = function (app, models) {
 
   var userModel = models.userModel;
+  var facebookConfig = {
+    clientID     : 'process.env.FB_CLIENT_ID_WAM',
+    clientSecret : 'process.env.FB_CLIENT_SECRET_WAM',
+    callbackURL  : 'process.env.FB_CALL_BACK_URL_WAM'
+  };
 
-  /* John pappy's - declare APIs at top and write functions below */
-
-  app.get("/auth/facebook", passport.authenticate('facebook'));
-  app.get('/auth/facebook/callback',
-    passport.authenticate('facebook', {
-      successRedirect: '/assignment/#/user',
-      failureRedirect: '/assignment/#/login'
-    }));
   app.post("/api/user", createUser);
-  app.post("/api/register", register);
   app.get("/api/user", getUsers);
-  app.get("/api/loggedIn", loggedIn);
   app.post("/api/logout", logout);
   app.get("/api/user/:userId", findUserById);
   app.delete("/api/user/:userId", deleteUser);
   app.put("/api/user/:userId", updateUser);
 
+  //authentication api
+  app.post('/api/login', passport.authenticate('local'), login);
+  app.post('/api/logout', logout);
+  app.post('/api/register', register);
+  app.post ('/api/loggedIn', loggedIn);
 
+  // auth with Facebook
+  app.get('/auth/facebook/callback',
+    passport.authenticate('facebook', {
+      successRedirect: '/assignment/#/profile',
+      failureRedirect: '/assignment/#/login'
+    }));
+  app.get ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
 
-
-  /* pattern matching usies only base URL. it ignores anything after ?
-   app.get("/api/user/:userId", findUserById);
-   app.get("/api/user/:userId", findUserById);
-   are the same URLs to Express!     */
-  // var facebookConfig = {
-  //     clientID     : process.env.FACEBOOK_CLIENT_ID,
-  //     clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
-  //     callbackURL  : process.env.FACEBOOK_CALLBACK_URL
-  // };
-
-
- //app.post  ('/api/login', passport.authenticate('local'), login);
- app.post  ('/api/login', login);
-
-
-
-  //
-  var facebookConfig = {
-    clientID: "1386708058009748",
-    clientSecret: "51f66c7e9b96b4b5461ae14842703d81",
-    callbackURL: "http://127.0.0.1:3000/auth/facebook/callback"
-  };
-
-  // instead of wam if you use local in passport.authenticate, then you dont need to provide it here
-  passport.use('facebook', new FacebookStrategy(facebookConfig, facebookLogin));
-  // passport.use('wam', new LocalStrategy(localStrategy));
-
-  passport.use('local' , new LocalStrategy(localStrategy)); //done - is to notify passport of success/failures
-
-
+  // passport config
+  passport.use(new LocalStrategy(localStrategy));
   passport.serializeUser(serializeUser);
   passport.deserializeUser(deserializeUser);
+  passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
+
+  // instead of wam if you use local in passport.authenticate, then you dont need to provide it here
+  //passport.use('facebook', new FacebookStrategy(facebookConfig, facebookLogin));
+  // passport.use('wam', new LocalStrategy(localStrategy));
+  //passport.use('local' , new LocalStrategy(localStrategy)); //done - is to notify passport of success/failures
+  //passport.serializeUser(serializeUser);
+  //passport.deserializeUser(deserializeUser);
 
 
   function localStrategy(username, password, done) {
@@ -70,20 +55,51 @@ module.exports = function (app, models) {
       .then(
         function (user) {
           if (user && bcrypt.compareSync(password, user.password)) {
-            // console.log("Found user ")
-            //console.log(user);
-            done(null, user);
-
-          } else {
-            console.log("ERROR IN LOCAL STRATEGY");
-            done(null, "Error in the login");
+            if (!user) {
+              return done(null, false);
+            }
+            return done(null, user);
           }
         },
-        function (err) {
-          done(err);
+        function (error) {
+          res.sendStatus(400).send(error);
         });
   }
 
+  function facebookStrategy(token, refreshToken, profile, done) {
+    model.userModel
+      .findUserByFacebookId(profile.id)
+      .then(
+        function(user) {
+          if(user) {
+            return done(null, user);
+          } else {
+            var names = profile.displayName.split(" ");
+            var newFacebookUser = {
+              lastName:  names[1],
+              firstName: names[0],
+              email:     profile.emails ? profile.emails[0].value:"",
+              facebook: {
+                id:    profile.id,
+                token: token
+              }
+            };
+            return model.userModel.createUser(newFacebookUser);
+          }
+        },
+        function(err) {
+          if (err) { return done(err); }
+        }
+      )
+      .then(
+        function(user){
+          return done(null, user);
+        },
+        function(err){
+          if (err) { return done(err); }
+        }
+      );
+  }
 
 
   function findUserByCredentials (username, password, req, res){
@@ -101,19 +117,6 @@ module.exports = function (app, models) {
 
   }
 
-
-
-
-
-
-
-
-
-  // has a unique token, has profile also
-  // profile has the info about user
-  // refresh toke - hashes info in db. makes sure the user
-  // done is simlar to that of local strategy.
-  // we need to call done with instance of an object that represents a user
   function facebookLogin(token, refreshToken, profile, done) {
     //check if the fb user already exists in our DB
 
@@ -216,29 +219,30 @@ module.exports = function (app, models) {
 
   function login(req, res) {
     ////
-    console.log(req.body);
+    var user = req.user;
+    res.json(user);
 
 
     //
-    userModel
-      .findUserByUsername(req.body.username)
-      .then(
-        function (user) {
-          if (user && bcrypt.compareSync(req.body.password, user.password)) {
-            // console.log("Found user ")
-            //console.log(user);
-            console.log("match");
-            res.status(200).json(user);
-
-          } else {
-            console.log("Wrong pw");
-            res.status(401).json("Wrong pw"); // sending status 410 unauthorized in case of wrong credentials
-            // done(null, "Error in the login");
-          }
-        },
-        function (err) {
-          res.send(err);
-        });
+    // userModel
+    //   .findUserByUsername(req.body.username)
+    //   .then(
+    //     function (user) {
+    //       if (user && bcrypt.compareSync(req.body.password, user.password)) {
+    //         // console.log("Found user ")
+    //         //console.log(user);
+    //         console.log("match");
+    //         res.status(200).json(user);
+    //
+    //       } else {
+    //         console.log("Wrong pw");
+    //         res.status(401).json("Wrong pw"); // sending status 410 unauthorized in case of wrong credentials
+    //         // done(null, "Error in the login");
+    //       }
+    //     },
+    //     function (err) {
+    //       res.send(err);
+    //     });
 
 
 
@@ -260,11 +264,7 @@ module.exports = function (app, models) {
 
   function loggedIn(req, res) {
     //function given by passport
-    if (req.isAuthenticated()) {
-      res.json(req.user);
-    } else {
-      res.send('0');
-    }
+    res.send(req.isAuthenticated() ? req.user : '0');
   }
 
   function createUser(req, res) {
