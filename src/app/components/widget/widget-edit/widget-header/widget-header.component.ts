@@ -13,7 +13,6 @@ export class WidgetHeaderComponent implements OnInit {
   flag = false; // setting error flag as false by default
   error: string;
   alert: string;
-  userId: string;
   websiteId: string;
   pageId: string;
   widgetId: string;
@@ -30,7 +29,6 @@ export class WidgetHeaderComponent implements OnInit {
     this.activatedRoute.params
       .subscribe(
         (params: any) => {
-          this.userId = params['userId'];
           this.websiteId = params['websiteId'];
           this.pageId = params['pageId'];
           this.widgetId = params['widgetId'];
@@ -52,7 +50,7 @@ export class WidgetHeaderComponent implements OnInit {
     } else {
     this.widgetService.updateWidget(this.widgetId, this.widget)
       .subscribe(
-        (data: any) => this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']),
+        (data: any) => this.router.navigate(['/user', 'website', this.websiteId, 'page', this.pageId, 'widget']),
         (error: any) => console.log(error)
       );
     }
@@ -63,7 +61,7 @@ export class WidgetHeaderComponent implements OnInit {
     // call delete widget function from widget client service
     this.widgetService.deleteWidget(this.widgetId)
       .subscribe(
-        (data: any) => this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']),
+        (data: any) => this.router.navigate(['/user', 'website', this.websiteId, 'page', this.pageId, 'widget']),
         (error: any) => console.log(error)
       );
 

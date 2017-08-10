@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {WebsiteService} from "../../../services/website.service.client";
 import {Router} from "@angular/router";
+import {SharedService} from "../../../services/shared.service";
 
 @Component({
   selector: 'app-website-new',
@@ -22,7 +23,7 @@ export class WebsiteNewComponent implements OnInit {
   alert = '* Enter the website name';
   flag = false;
 
-  constructor(private _websiteService: WebsiteService, private router: Router) { }
+  constructor(private _websiteService: WebsiteService, private router: Router, private sharedService: SharedService) { }
 
   ngOnInit() {
     this.getUser();
@@ -35,14 +36,15 @@ export class WebsiteNewComponent implements OnInit {
     else {
       this._websiteService.createWebsite(this.userId, this.website)
         .subscribe(
-          (data: any) => this.router.navigate(['user/', this.userId, 'website']),
+          (data: any) => this.router.navigate(['user/', 'website']),
           (error: any) => console.log(error)
         );
     }
   }
 
   getUser(){
-    this.user = JSON.parse(localStorage.getItem("user"));
+    //this.user = JSON.parse(localStorage.getItem("user"));
+    this.user = this.sharedService.user;
     this.userId = this.user['_id'];
   }
 
