@@ -28,6 +28,7 @@ import { WidgetImageComponent } from './components/widget/widget-edit/widget-ima
 import { WidgetTextComponent } from './components/widget/widget-edit/widget-text/widget-text.component';
 import {SafePipe} from './components/widget/widget-list/safe-pipe.pipe';
 import {AuthGuard} from './services/auth-gaurd.service';
+import {SharedService} from './services/shared.service';
 
 // add client side services to providers
 
@@ -60,7 +61,7 @@ import {AuthGuard} from './services/auth-gaurd.service';
     HttpModule,
     Routing
   ],
-  providers: [UserService, WebsiteService, PageService, WidgetService, AuthGuard],
+  providers: [UserService, WebsiteService, PageService, WidgetService, AuthGuard, SharedService],
   bootstrap: [AppComponent]
 })
 

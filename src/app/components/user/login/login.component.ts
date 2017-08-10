@@ -3,6 +3,7 @@ import {UserService} from '../../../services/user.service.client';
 import {Router} from '@angular/router';
 import 'rxjs/Rx';
 import {NgForm} from "@angular/forms";
+import {SharedService} from "../../../services/shared.service";
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,7 @@ export class LoginComponent implements OnInit {
 
   // TODO : fix authentication using pasport
 
-  constructor(private router: Router, private _userService: UserService){ }
+  constructor(private router: Router, private _userService: UserService, private sharedService: SharedService){ }
 
   ngOnInit() {}
 
@@ -36,7 +37,7 @@ export class LoginComponent implements OnInit {
     this._userService.login(this.username, this.password)
       .subscribe(
         (data: any) => {
-            localStorage.setItem('user', JSON.stringify(data));
+            this.sharedService.user = data;
             this.errorFlag = false;
             this.router.navigate(['/profile'])},
         (error: any) => {

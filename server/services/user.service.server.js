@@ -41,32 +41,6 @@ module.exports = function (app, models) {
   passport.deserializeUser(deserializeUser);
   passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
 
-  // instead of wam if you use local in passport.authenticate, then you dont need to provide it here
-  //passport.use('facebook', new FacebookStrategy(facebookConfig, facebookLogin));
-  // passport.use('wam', new LocalStrategy(localStrategy));
-  //passport.use('local' , new LocalStrategy(localStrategy)); //done - is to notify passport of success/failures
-  //passport.serializeUser(serializeUser);
-  //passport.deserializeUser(deserializeUser);
-
-
-  // function localStrategy(username, password, done) {
-  //   return userModel
-  //     .findUserByUsername(username)
-  //     .then(
-  //       function (user) {
-  //         if (user && bcrypt.compareSync(password, user.password)) {
-  //           if (!user) {
-  //             return done(null, false);
-  //           }
-  //           return done(null, user);
-  //         }
-  //       },
-  //       function (error) {
-  //         res.sendStatus(400).send(error);
-  //       });
-  // }
-
-
   function localStrategy(username, password, done) {
     userModel
       .findUserByUsername(username)
@@ -171,50 +145,33 @@ module.exports = function (app, models) {
       );
   }
 
-
   function register(req, res) {
-
-    var username = req.body.username;
-    var password = req.body.password;
-
+    var user = req.body;
+    user.password = bcrypt.hashSync(user.password);
     userModel
-      .findUserByUsername(username)
-      .then(function (user) {
-          if (user) {
-            //if user exists already we give an error
-            res.status(400).send("Username is in use");
-            return;
-          } else {
-            //right before we create the user, we encrypt the password
-            // we replace then req.body password by hashing it
-            req.body.password = bcrypt.hashSync(password);
-            return userModel
-              .createUser(req.body);
-          }
-        },
-        function (err) {
-          res.status(400).send(err);
-
-        })
-
-      .then(
-        function (user) {
-          if (user) {
-            //provided by passport
-            // req.login(user, function (err) {
-            //   if (err) {
-            //     res.status(400).send(err);
-            //   } else {
-            //     res.json(user);
-            //   }
-            // })
-
-            res.json(user); // when user is successfully created
-          }
-        },
-        function (err) {
-          res.status(400).send(err);
-        });
+      .findUserByUsername(user.username)
+      .then(function (data) {
+        if(data){
+          res.status(400).send('Username is in use!');
+          return;
+        } else{
+          userModel
+            .createUser(user)
+            .then(
+              function(user){
+                if(user){
+                  req.login(user, function(err) {
+                    if(err) {
+                      res.status(400).send(err);
+                    } else {
+                      res.json(user);
+                    }
+                  });
+                }
+              }
+            );
+        }
+      })
 
   }
 

@@ -7,17 +7,17 @@ import {Http, RequestOptions, Response} from '@angular/http';
 import 'rxjs/Rx';
 import {environment} from '../../environments/environment';
 import {Router} from '@angular/router';
+import {SharedService} from "./shared.service";
 // injecting service into module
 @Injectable()
 
 export class UserService {
 
-  constructor(private _http: Http, private router: Router) {}
+  constructor(private _http: Http, private router: Router, private sharedService: SharedService) {}
 
   baseUrl = environment.baseUrl;
 
   options = new RequestOptions();
-
 
   loggedIn() {
     this.options.withCredentials = true;
@@ -26,8 +26,10 @@ export class UserService {
         (res: Response) => {
           const user = res.json();
           if (user != '0') {
+            this.sharedService.user = user; // setting user as global variable using shared service
             return true;
           } else {
+            console.log('user at logged in: ', user);
             this.router.navigate(['/login']);
             return false;
           }
@@ -57,12 +59,13 @@ export class UserService {
 
   register(username: String, password: String) {
 
+    this.options.withCredentials = true;
     const body = {
       username : username,
       password : password
     };
 
-    return this._http.post(this.baseUrl + '/api/register', body)
+    return this._http.post(this.baseUrl + '/api/register', body, this.options)
       .map(
         (res: Response) => {
           const data = res.json();
