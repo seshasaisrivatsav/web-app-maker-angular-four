@@ -49,12 +49,34 @@ module.exports = function (app, models) {
   //passport.deserializeUser(deserializeUser);
 
 
+  // function localStrategy(username, password, done) {
+  //   return userModel
+  //     .findUserByUsername(username)
+  //     .then(
+  //       function (user) {
+  //         if (user && bcrypt.compareSync(password, user.password)) {
+  //           if (!user) {
+  //             return done(null, false);
+  //           }
+  //           return done(null, user);
+  //         }
+  //       },
+  //       function (error) {
+  //         res.sendStatus(400).send(error);
+  //       });
+  // }
+
+
   function localStrategy(username, password, done) {
-    userModel
+    console.log("username pass at localstrategy");
+    console.log(username);
+    console.log(password);
+
+      userModel
       .findUserByUsername(username)
       .then(
         function (user) {
-          if (user && bcrypt.compareSync(password, user.password)) {
+          if(user && bcrypt.compareSync(password, user.password)){
             if (!user) {
               return done(null, false);
             }
@@ -63,7 +85,8 @@ module.exports = function (app, models) {
         },
         function (error) {
           res.sendStatus(400).send(error);
-        });
+        }
+      );
   }
 
   function facebookStrategy(token, refreshToken, profile, done) {
@@ -105,15 +128,30 @@ module.exports = function (app, models) {
   function findUserByCredentials (username, password, req, res){
     userModel
       .findUserByCredentials(username, password)
-      .then(function (user) {
-        console.log("server find user");
-        console.log(user);
-          req.session.currentUser= user;
-          res.json(user);
+      .then(
+        function(user) {
+          console.log(user);
+          if (user) {
+            res.json(user);
+          }
+          else {
+            res.send('0');
+          }
         },
-        function (err) {
-          res.statusCode(404).send(err);
-        });
+        function(err) {
+          res.sendStatus(400).send(err);
+        }
+      );
+      // .findUserByCredentials(username, password)
+      // .then(function (user) {
+      //   console.log("server find user");
+      //   console.log(user);
+      //     req.session.currentUser= user;
+      //     res.json(user);
+      //   },
+      //   function (err) {
+      //     res.statusCode(404).send(err);
+      //   });
 
   }
 
@@ -197,28 +235,43 @@ module.exports = function (app, models) {
 
   }
 
+  // function serializeUser(user, done) {
+  //   done(null, user);
+  // }
+  //
+  // function deserializeUser(user, done) {
+  //
+  //   userModel.findUserById(user._id)
+  //     .then(
+  //       function (user) {
+  //         done(null, user);
+  //       },
+  //       function (err) {
+  //         done(err, null);
+  //       }
+  //     );
+  // }
+
   function serializeUser(user, done) {
     done(null, user);
   }
 
   function deserializeUser(user, done) {
-
     userModel
-
       .findUserById(user._id)
       .then(
-        function (user) {
+        function(user){
           done(null, user);
         },
-        function (err) {
+        function(err){
           done(err, null);
         }
       );
   }
 
 
+
   function login(req, res) {
-    ////
     var user = req.user;
     res.json(user);
 
@@ -257,13 +310,14 @@ module.exports = function (app, models) {
   }
 
   function logout(req, res) {
-    //we're using function provided by passport
     req.logout();
     res.send(200); //success
   }
 
   function loggedIn(req, res) {
     //function given by passport
+    //console.log('rq at loogedIn', req);
+    //console.log('at logged in user', req.user);
     res.send(req.isAuthenticated() ? req.user : '0');
   }
 
@@ -273,7 +327,6 @@ module.exports = function (app, models) {
       .createUser(user)
       .then(
         function (user) {
-
           res.json(user);
         },
         function (error) {

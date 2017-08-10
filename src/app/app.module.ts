@@ -27,7 +27,7 @@ import { WidgetHtmlComponent } from './components/widget/widget-edit/widget-html
 import { WidgetImageComponent } from './components/widget/widget-edit/widget-image/widget-image.component';
 import { WidgetTextComponent } from './components/widget/widget-edit/widget-text/widget-text.component';
 import {SafePipe} from './components/widget/widget-list/safe-pipe.pipe';
-import {AuthGaurd} from './AuthGaurd';
+import {AuthGuard} from './services/auth-gaurd.service';
 
 // add client side services to providers
 
@@ -60,9 +60,28 @@ import {AuthGaurd} from './AuthGaurd';
     HttpModule,
     Routing
   ],
-  providers: [UserService, WebsiteService, PageService, WidgetService, AuthGaurd, { provide: 'AuthGaurd1', useValue: () => false}],
+  providers: [UserService, WebsiteService, PageService, WidgetService, AuthGuard],
   bootstrap: [AppComponent]
 })
+
 export class AppModule {
+
+  // checkLoggedin($q, UserService, $location, $rootScope) {
+  //   var deferred = $q.defer();
+  //   UserService
+  //     .loggedin()
+  //     .success(
+  //       function (user) {
+  //         if (user != '0') {
+  //           $rootScope.loggedUser = user;
+  //           deferred.resolve(user); // user is binded to loggedin here
+  //         } else {
+  //           deferred.reject();
+  //           $location.url("/login");
+  //         }
+  //       }
+  //     );
+  //   return deferred.promise;
+  // }
 
 }

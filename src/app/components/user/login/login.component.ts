@@ -21,10 +21,9 @@ export class LoginComponent implements OnInit {
 
   // TODO : fix authentication using pasport
 
-  constructor(private router: Router, private _userService: UserService ){ }
+  constructor(private router: Router, private _userService: UserService){ }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   login() {
 
@@ -42,5 +41,4 @@ export class LoginComponent implements OnInit {
         (error: any) => this.errorFlag = true
       );
   }
-
 }

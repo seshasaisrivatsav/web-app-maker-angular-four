@@ -2,24 +2,53 @@
  * Created by sesha on 6/2/17.
  */
 
-import {Injectable} from "@angular/core";
-import {Http, Response} from "@angular/http";
+import {Injectable} from '@angular/core';
+import {Http, RequestOptions, Response} from '@angular/http';
 import 'rxjs/Rx';
 import {environment} from '../../environments/environment';
+import {Router} from "@angular/router";
 // injecting service into module
 @Injectable()
 
-export class UserService{
+export class UserService {
 
-  constructor(private _http : Http){
-
-  }
+  constructor(private _http: Http, private router: Router) {}
 
   baseUrl = environment.baseUrl;
 
+  options = new RequestOptions();
 
 
-  findUserById(userId : String){
+  loggedIn() {
+    console.log('inside loggedIn');
+    this.options.withCredentials = true;
+    return this._http.post(this.baseUrl+'/api/loggedIn', '', this.options)
+      .map(
+        (res: Response) => {
+          const user = res.json();
+          console.log(user);
+          if (user != '0') {
+            return true;
+          } else {
+            this.router.navigate(['/login']);
+            return false;
+          }
+        }
+      );
+  }
+
+  logout() {
+    this.options.withCredentials = true;
+    return this._http.post(this.baseUrl+'/api/logout','', this.options)
+      .map(
+        (res: Response) => {
+          const data = res;
+          console.log(data);
+        }
+      );
+  }
+
+  findUserById(userId: String) {
     return this._http.get(this.baseUrl + '/api/user/'+userId)
       .map(
         (res: Response) => {
@@ -29,7 +58,7 @@ export class UserService{
       );
   }
 
-  register(username: String, password : String){
+  register(username: String, password: String) {
 
     var body = {
       username : username,
@@ -48,14 +77,16 @@ export class UserService{
 
   }
 
-  login(username: String, password: String){
+  login(username: String, password: String) {
+
+    this.options.withCredentials = true;
 
     var body = {
       username : username,
       password : password
     };
 
-    return this._http.post(this.baseUrl + '/api/login', body)
+    return this._http.post(this.baseUrl + '/api/login', body, this.options)
       .map(
         (res: Response) => {
           const data = res.json();
@@ -64,7 +95,7 @@ export class UserService{
       );
       // .toPromise()
       // .then(data => {
-      //   console.log("response after login", data);
+      //   console.log('response after login', data);
       //   return data;
       // });
 
@@ -74,8 +105,8 @@ export class UserService{
     return this._http.put(this.baseUrl + '/api/user/'+ user._id, user)
       .map(
         (res: Response) => {
-          console.log("client service");
-          return "Updated";
+          console.log('client service');
+          return 'Updated';
         }
       );
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import 'rxjs/Rx';
 import {UserService} from "../../../services/userService.client";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-profile',
@@ -20,7 +21,7 @@ export class ProfileComponent implements OnInit {
   errorMsg = 'Invalid username or password !';
 
 
-  constructor(private _UserService: UserService) { }
+  constructor(private _UserService: UserService, private router: Router) { }
 
   ngOnInit() {
 
@@ -29,9 +30,11 @@ export class ProfileComponent implements OnInit {
   }
 
   logout() {
-    localStorage.clear();
+    this._UserService.logout()
+      .subscribe(
+        (data: any) => this.router.navigate(['/login'])
+      );
   }
-
 
   getUser() {
     this.user = JSON.parse(localStorage.getItem("user"));
