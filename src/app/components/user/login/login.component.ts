@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {UserService} from '../../../services/userService.client';
+import {UserService} from '../../../services/user.service.client';
 import {Router} from '@angular/router';
 import 'rxjs/Rx';
 import {NgForm} from "@angular/forms";
@@ -21,28 +21,27 @@ export class LoginComponent implements OnInit {
 
   // TODO : fix authentication using pasport
 
-  constructor(private router: Router, private _userService: UserService ){ }
+  constructor(private router: Router, private _userService: UserService){ }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   login() {
-
-    console.log("called");
 
     // fetching data from loginForm
     this.username = this.loginForm.value.username;
     this.password = this.loginForm.value.password;
 
     // calling client side userservice to send login information
+    console.log('data', this.username);
     this._userService.login(this.username, this.password)
       .subscribe(
         (data: any) => {
             localStorage.setItem('user', JSON.stringify(data));
             this.errorFlag = false;
             this.router.navigate(['/profile'])},
-        (error: any) => this.errorFlag = true
+        (error: any) => {
+          this.errorFlag = true;
+        }
       );
   }
-
 }

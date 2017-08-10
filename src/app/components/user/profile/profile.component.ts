@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import 'rxjs/Rx';
-import {UserService} from "../../../services/userService.client";
+import {UserService} from "../../../services/user.service.client";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-profile',
@@ -20,7 +21,7 @@ export class ProfileComponent implements OnInit {
   errorMsg = 'Invalid username or password !';
 
 
-  constructor(private _UserService: UserService) { }
+  constructor(private _UserService: UserService, private router: Router) { }
 
   ngOnInit() {
 
@@ -28,22 +29,24 @@ export class ProfileComponent implements OnInit {
 
   }
 
-  logout(){
-    localStorage.clear();
+  logout() {
+    this._UserService.logout()
+      .subscribe(
+        (data: any) => this.router.navigate(['/login'])
+      );
   }
 
-
-  getUser(){
+  getUser() {
     this.user = JSON.parse(localStorage.getItem("user"));
     this.username = this.user['username'];
     this.firstName = this.user['firstName'];
-    this.lastName= this.user['lastName'];
+    this.lastName = this.user['lastName'];
     this.email = this.user['email'];
     this.userId = this.user['_id'];
   }
 
 
-  updateUser(){
+  updateUser() {
     let updatedUser = {
       _id : this.user['_id'],
       username : this.username,
@@ -55,29 +58,29 @@ export class ProfileComponent implements OnInit {
 
 
     this._UserService.updateUser(updatedUser)
-      // .subscribe(
-    //   (data: any)=>{
-    //     this._UserService.findUserById(updatedUser._id)
-    //       .subscribe(
-    //         (data: any) => {
-    //           console.log(data);
-    //           localStorage.setItem('user', JSON.stringify(data));
-    //           this.ngOnInit();
-    //         }
-    //       )
-    //   },
-    //   (error: any) => this.errorFlag = true
-    // );
-      .toPromise()
-      .then( data => {
+      .subscribe(
+      (data: any) => {
         this._UserService.findUserById(updatedUser._id)
-          .toPromise()
-          .then( data => {
-            localStorage.setItem('user', JSON.stringify(data));
-
-            this.ngOnInit();
-          })
-      })
+          .subscribe(
+            (data: any) => {
+              console.log(data);
+              localStorage.setItem('user', JSON.stringify(data));
+              this.ngOnInit();
+            }
+          )
+      },
+      (error: any) => this.errorFlag = true
+    );
+      // .toPromise()
+      // .then( data => {
+      //   this._UserService.findUserById(updatedUser._id)
+      //     .toPromise()
+      //     .then( data => {
+      //       localStorage.setItem('user', JSON.stringify(data));
+      //
+      //       this.ngOnInit();
+      //     })
+      // })
   }
 
 }

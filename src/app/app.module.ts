@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/user/login/login.component';
 import { Routing } from './app.routing';
 import { RegisterComponent } from './components/user/register/register.component';
-import { UserService } from './services/userService.client';
+import { UserService } from './services/user.service.client';
 import { ProfileComponent } from './components/user/profile/profile.component';
 import { WebsiteListComponent } from './components/website/website-list/website-list.component';
 import { WebsiteNewComponent } from './components/website/website-new/website-new.component';
@@ -26,7 +26,8 @@ import { WidgetHeaderComponent } from './components/widget/widget-edit/widget-he
 import { WidgetHtmlComponent } from './components/widget/widget-edit/widget-html/widget-html.component';
 import { WidgetImageComponent } from './components/widget/widget-edit/widget-image/widget-image.component';
 import { WidgetTextComponent } from './components/widget/widget-edit/widget-text/widget-text.component';
-import {SafePipe} from "./components/widget/widget-list/safe-pipe.pipe";
+import {SafePipe} from './components/widget/widget-list/safe-pipe.pipe';
+import {AuthGuard} from './services/auth-gaurd.service';
 
 // add client side services to providers
 
@@ -59,7 +60,8 @@ import {SafePipe} from "./components/widget/widget-list/safe-pipe.pipe";
     HttpModule,
     Routing
   ],
-  providers: [UserService, WebsiteService, PageService, WidgetService],
+  providers: [UserService, WebsiteService, PageService, WidgetService, AuthGuard],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+
+export class AppModule {}
