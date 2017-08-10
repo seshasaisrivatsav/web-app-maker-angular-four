@@ -23,15 +23,15 @@ const APP_ROUTES: Routes = [
   {path: 'login', component : LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
-  {path: 'user/:userId/website', component: WebsiteListComponent, canActivate: [AuthGuard]},
-  {path: 'user/:userId/website/new', component: WebsiteNewComponent, canActivate: [AuthGuard]},
-  {path: 'user/:userId/website/:websiteId', component: WebsiteEditComponent, canActivate: [AuthGuard]},
-  {path: 'user/:userId/website/:websiteId/page', component: PageListComponent, canActivate: [AuthGuard]},
-  {path: 'user/:userId/website/:websiteId/page/new', component: PageNewComponent, canActivate: [AuthGuard]},
-  {path: 'user/:userId/website/:websiteId/page/:pageId', component: PageEditComponent, canActivate: [AuthGuard]},
-  {path: 'user/:userId/website/:websiteId/page/:pageId/widget', component: WidgetListComponent, canActivate: [AuthGuard]},
-  {path: 'user/:userId/website/:websiteId/page/:pageId/widget/new', component: WidgetNewComponent, canActivate: [AuthGuard]},
-  {path: 'user/:userId/website/:websiteId/page/:pageId/widget/:widgetId', component: WidgetEditComponent, canActivate: [AuthGuard]}
+  {path: 'user/website', component: WebsiteListComponent, canActivate: [AuthGuard]},
+  {path: 'user/website/new', component: WebsiteNewComponent, canActivate: [AuthGuard]},
+  {path: 'user/website/:websiteId', component: WebsiteEditComponent, canActivate: [AuthGuard]},
+  {path: 'user/website/:websiteId/page', component: PageListComponent, canActivate: [AuthGuard]},
+  {path: 'user/website/:websiteId/page/new', component: PageNewComponent, canActivate: [AuthGuard]},
+  {path: 'user/website/:websiteId/page/:pageId', component: PageEditComponent, canActivate: [AuthGuard]},
+  {path: 'user/website/:websiteId/page/:pageId/widget', component: WidgetListComponent, canActivate: [AuthGuard]},
+  {path: 'user/website/:websiteId/page/:pageId/widget/new', component: WidgetNewComponent, canActivate: [AuthGuard]},
+  {path: 'user/website/:websiteId/page/:pageId/widget/:widgetId', component: WidgetEditComponent, canActivate: [AuthGuard]}
 
 ];
 

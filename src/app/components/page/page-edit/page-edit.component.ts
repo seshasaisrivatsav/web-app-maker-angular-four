@@ -9,7 +9,6 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class PageEditComponent implements OnInit {
 
-  userId: string;
   websiteId: string;
   pageId: string;
   errFlag: boolean;
@@ -26,11 +25,10 @@ export class PageEditComponent implements OnInit {
     this.error = 'Enter the name of the Page';
     this.alert = '* Enter the Page name';
 
-    // fetching userId, websiteId and pageId from current route
+    // fetching websiteId and pageId from current route
     this.activatedRoute.params
       .subscribe(
         (params: any) => {
-          this.userId = params['userId'];
           this.websiteId = params['websiteId'];
           this.pageId = params['pageId'];
         }
@@ -51,7 +49,7 @@ export class PageEditComponent implements OnInit {
     else {
       this._pageService.updatePage(this.pageId, this.page)
         .subscribe(
-          (data: any) => this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page']),
+          (data: any) => this.router.navigate(['/user', 'website', this.websiteId, 'page']),
           (error: any) => console.log(error)
         );
     }
@@ -62,7 +60,7 @@ export class PageEditComponent implements OnInit {
 
     this._pageService.deletePage(this.pageId)
       .subscribe(
-        (data: any) => this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page']),
+        (data: any) => this.router.navigate(['/user', 'website', this.websiteId, 'page']),
         (error: any) => console.log(error)
       );
 

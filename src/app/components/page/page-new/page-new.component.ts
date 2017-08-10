@@ -10,7 +10,6 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class PageNewComponent implements OnInit {
 
   websiteId: string;
-  userId: string;
   error: string;
   alert: string;
   errFlag: boolean; // flag to show/hide error alerts
@@ -33,7 +32,6 @@ export class PageNewComponent implements OnInit {
     this.activatedRoute.params.subscribe(
       (params: any) => {
         this.websiteId = params['websiteId'];
-        this.userId = params['userId'];
       }
     );
 
@@ -47,7 +45,7 @@ export class PageNewComponent implements OnInit {
     } else {
       this._pageService.createPage(this.websiteId, this.page)
         .subscribe(
-          (data: any) => this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page']),
+          (data: any) => this.router.navigate(['/user', 'website', this.websiteId, 'page']),
           (error: any) => console.log(error)
         );
     }

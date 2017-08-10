@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {WebsiteService} from "../../../services/website.service.client";
 import {ActivatedRoute} from "@angular/router";
+import {SharedService} from "../../../services/shared.service";
 
 @Component({
   selector: 'app-website-list',
@@ -15,7 +16,7 @@ export class WebsiteListComponent implements OnInit {
   websiteId: string;
   sub: any;
 
-  constructor(private _websiteService : WebsiteService, private activatedRoute: ActivatedRoute) { }
+  constructor(private _websiteService : WebsiteService, private activatedRoute: ActivatedRoute, private sharedService: SharedService) { }
 
   ngOnInit() {
     this.getUser();
@@ -29,7 +30,8 @@ export class WebsiteListComponent implements OnInit {
   }
 
   getUser(){
-    this.user = JSON.parse(localStorage.getItem("user"));
+    //this.user = JSON.parse(localStorage.getItem("user"));
+    this.user = this.sharedService.user;
     this.userId = this.user['_id'];
   }
 }

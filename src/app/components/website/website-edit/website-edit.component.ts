@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {WebsiteService} from "../../../services/website.service.client";
+import {SharedService} from "../../../services/shared.service";
 
 @Component({
   selector: 'app-website-edit',
@@ -25,9 +26,9 @@ export class WebsiteEditComponent implements OnInit {
     dateCreated: {},
     pages: [],
     __v: 0};
-  websites = {};
+  websites = [{}];
 
-  constructor(private activatedRoute: ActivatedRoute, private _websiteService: WebsiteService, private router: Router) { }
+  constructor(private activatedRoute: ActivatedRoute, private _websiteService: WebsiteService, private router: Router, private sharedService: SharedService) { }
 
   ngOnInit() {
     this.getUser();
@@ -42,33 +43,38 @@ export class WebsiteEditComponent implements OnInit {
     // getting websit details as per websiteId
     this._websiteService.findWebsiteById(this.websiteId)
       .subscribe(
-        (data: any) =>{this.website = data;
-        console.log(data);}
+        (data: any) => {
+          console.log('website by id: ', data);
+          this.website = data;
+        }
       );
 
     // getting list of all websites
+    console.log(this.userId);
     this._websiteService.findWebsitesByUser(this.userId)
       .subscribe(
         (data: any) => {
-          console.log(data);
           this.websites = data; },
         (error) => console.log(error)
       );
   }
 
   getUser(){
-    this.user = JSON.parse(localStorage.getItem("user"));
+    //this.user = JSON.parse(localStorage.getItem("user"));
+    this.user = this.sharedService.user;
+    console.log(this.user);
     this.userId = this.user['_id'];
+    console.log(this.userId);
   }
 
-  updateWebsite(){
+  updateWebsite() {
 
     if(this.website.name == '')
       this.flag = true;
     else {
       this._websiteService.updateWebsite(this.websiteId, this.website)
         .subscribe(
-          (data: any) => this.router.navigate(['/user', this.userId, 'website']),
+          (data: any) => this.router.navigate(['/user', 'website']),
           (error) => console.log(error)
         );
     }
@@ -78,7 +84,7 @@ export class WebsiteEditComponent implements OnInit {
 
     this._websiteService.deleteWebsite(this.websiteId)
       .subscribe(
-        (data: any) => this.router.navigate(['/user', this.userId, 'website']),
+        (data: any) => this.router.navigate(['/user', 'website']),
         (error) => console.log(error)
       );
   }

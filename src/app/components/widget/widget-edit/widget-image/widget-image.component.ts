@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {WidgetService} from '../../../../services/widget.service.client';
 import {environment} from '../../../../../environments/environment';
+import {SharedService} from "../../../../services/shared.service";
 
 @Component({
   selector: 'app-widget-image',
@@ -18,7 +19,7 @@ export class WidgetImageComponent implements OnInit {
   widgetId: string;
   baseUrl: string;
 
-  constructor(private activatedRoute: ActivatedRoute, private widgetService: WidgetService, private router: Router) { }
+  constructor(private activatedRoute: ActivatedRoute, private widgetService: WidgetService, private router: Router, private sharedService: SharedService) { }
 
   ngOnInit() {
 
@@ -29,7 +30,7 @@ export class WidgetImageComponent implements OnInit {
     this.activatedRoute.params
       .subscribe(
         (params: any) => {
-          this.userId = params['userId'];
+          this.userId = this.sharedService.user['_id'];
           this.websiteId = params['websiteId'];
           this.pageId = params['pageId'];
           this.widgetId = params['widgetId'];
@@ -51,7 +52,7 @@ export class WidgetImageComponent implements OnInit {
 
       this.widgetService.updateWidget(this.widgetId, this.widget)
         .subscribe(
-          (data: any) => this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']),
+          (data: any) => this.router.navigate(['/user', 'website', this.websiteId, 'page', this.pageId, 'widget']),
           (error: any) => console.log(error)
         );
 
@@ -62,7 +63,7 @@ export class WidgetImageComponent implements OnInit {
     // call delete widget function from widget client service
     this.widgetService.deleteWidget(this.widgetId)
       .subscribe(
-        (data: any) => this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget']),
+        (data: any) => this.router.navigate(['/user', 'website', this.websiteId, 'page', this.pageId, 'widget']),
         (error: any) => console.log(error)
       );
 

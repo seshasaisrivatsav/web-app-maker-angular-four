@@ -9,7 +9,6 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class WidgetNewComponent implements OnInit {
 
-  userId: string;
   websiteId: string;
   pageId: string;
   widgetId: string;
@@ -31,7 +30,6 @@ export class WidgetNewComponent implements OnInit {
     this.activatedRoute.params
       .subscribe(
         (params: any) => {
-          this.userId = params['userId'];
           this.websiteId = params['websiteId'];
           this.pageId = params['pageId'];
         }
@@ -49,7 +47,7 @@ export class WidgetNewComponent implements OnInit {
       .subscribe(
         (data: any) => {
             this.widgetId = data._id;
-            this.router.navigate(['/user', this.userId, 'website', this.websiteId, 'page', this.pageId, 'widget', this.widgetId]);
+            this.router.navigate(['/user', 'website', this.websiteId, 'page', this.pageId, 'widget', this.widgetId]);
         },
         (error: any) => console.log(error)
       );

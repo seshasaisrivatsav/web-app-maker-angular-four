@@ -35,7 +35,7 @@ module.exports= function(app, models){
         var myFile        = req.file;
 
         if(myFile == null) {
-            res.redirect("http://localhost:4200/user/"+userId +"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId);
+            res.redirect("http://localhost:4200/user/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId);
             return;
         }
 
@@ -60,7 +60,7 @@ module.exports= function(app, models){
                     res.sendStatus(404).send(err);
                 });
 
-        res.redirect("http://localhost:4200/user/"+userId +"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId);
+        res.redirect("http://localhost:4200/user/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId);
     }
 
 

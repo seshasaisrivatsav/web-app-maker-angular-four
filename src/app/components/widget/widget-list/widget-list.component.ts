@@ -12,7 +12,6 @@ export class WidgetListComponent implements OnInit {
 
   widgets = [{}];
   widget = {};
-  userId: string;
   websiteId: string;
   pageId: string;
 
@@ -24,7 +23,6 @@ export class WidgetListComponent implements OnInit {
     this.activatedRoute.params
       .subscribe(
         (params: any) => {
-          this.userId = params['userId'];
           this.websiteId = params['websiteId'];
           this.pageId = params['pageId'];
         }
