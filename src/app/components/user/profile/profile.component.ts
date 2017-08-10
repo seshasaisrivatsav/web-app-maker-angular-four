@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import 'rxjs/Rx';
 import {UserService} from "../../../services/user.service.client";
 import {Router} from "@angular/router";
+import {SharedService} from "../../../services/shared.service";
 
 @Component({
   selector: 'app-profile',
@@ -21,7 +22,7 @@ export class ProfileComponent implements OnInit {
   errorMsg = 'Invalid username or password !';
 
 
-  constructor(private _UserService: UserService, private router: Router) { }
+  constructor(private _UserService: UserService, private router: Router, private sharedService: SharedService) { }
 
   ngOnInit() {
 
@@ -37,7 +38,7 @@ export class ProfileComponent implements OnInit {
   }
 
   getUser() {
-    this.user = JSON.parse(localStorage.getItem("user"));
+    this.user = this.sharedService.user;
     this.username = this.user['username'];
     this.firstName = this.user['firstName'];
     this.lastName = this.user['lastName'];
