@@ -18,7 +18,6 @@ export class UserService {
 
   options = new RequestOptions();
 
-
   loggedIn() {
     this.options.withCredentials = true;
     return this._http.post(this.baseUrl + '/api/loggedIn', '', this.options)
@@ -57,12 +56,13 @@ export class UserService {
 
   register(username: String, password: String) {
 
+    this.options.withCredentials = true;
     const body = {
       username : username,
       password : password
     };
 
-    return this._http.post(this.baseUrl + '/api/register', body)
+    return this._http.post(this.baseUrl + '/api/register', body, this.options)
       .map(
         (res: Response) => {
           const data = res.json();
