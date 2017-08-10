@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {UserService} from "../../../services/userService.client";
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {UserService} from "../../../services/user.service.client";
 import {Router} from "@angular/router";
+import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-register',
@@ -9,26 +10,41 @@ import {Router} from "@angular/router";
 })
 export class RegisterComponent implements OnInit {
 
-  //properties
-  username : String;
-  password : String;
-  vpassword : String;
-  testresult : any;
+  @ViewChild('f') registerForm: NgForm;
 
-  constructor(private _userService : UserService, private router: Router) { }
+  // properties
+  username: string;
+  password: string;
+  vpassword: string;
+  error: string;
 
-  ngOnInit() {
-  }
+  constructor(private _userService: UserService, private router: Router) { }
 
-  register(username, password){
+  ngOnInit() { }
 
-      this._userService.register(username, password)
-        .then(data => {
-          if(data){
-            localStorage.setItem('user', JSON.stringify(data));
-            this.router.navigate(['/profile']);
-          }
-        });
+  register() {
+
+    this.username = this.registerForm.value.username;
+    this.password = this.registerForm.value.password;
+    this.vpassword = this.registerForm.value.vpassword;
+
+    // call user service only if passwords match else show the same error
+    if (this.password === this.vpassword) {
+        this._userService.register(this.username, this.password)
+          .subscribe(
+            (data: any) => {
+              localStorage.setItem('user', JSON.stringify(data));
+              this.router.navigate(['/profile']);
+            },
+            (error: any) => {
+              console.log(error);
+              this.error = error._body;
+            }
+        );
+    } else {
+      this.error = 'Passwords do not match!';
+    }
+
     }
 
 }
