@@ -68,25 +68,19 @@ module.exports = function (app, models) {
 
 
   function localStrategy(username, password, done) {
-    console.log("username pass at localstrategy");
-    console.log(username);
-    console.log(password);
-
-      userModel
+    userModel
       .findUserByUsername(username)
       .then(
         function (user) {
-          if(user && bcrypt.compareSync(password, user.password)){
-            if (!user) {
-              return done(null, false);
-            }
+          if (user && bcrypt.compareSync(password, user.password)) {
             return done(null, user);
+          } else {
+            return done(null, false);
           }
         },
-        function (error) {
-          res.sendStatus(400).send(error);
-        }
-      );
+        function (err) {
+          res.sendStatus(400).send(err);
+        });
   }
 
   function facebookStrategy(token, refreshToken, profile, done) {
@@ -142,17 +136,6 @@ module.exports = function (app, models) {
           res.sendStatus(400).send(err);
         }
       );
-      // .findUserByCredentials(username, password)
-      // .then(function (user) {
-      //   console.log("server find user");
-      //   console.log(user);
-      //     req.session.currentUser= user;
-      //     res.json(user);
-      //   },
-      //   function (err) {
-      //     res.statusCode(404).send(err);
-      //   });
-
   }
 
   function facebookLogin(token, refreshToken, profile, done) {
@@ -235,23 +218,6 @@ module.exports = function (app, models) {
 
   }
 
-  // function serializeUser(user, done) {
-  //   done(null, user);
-  // }
-  //
-  // function deserializeUser(user, done) {
-  //
-  //   userModel.findUserById(user._id)
-  //     .then(
-  //       function (user) {
-  //         done(null, user);
-  //       },
-  //       function (err) {
-  //         done(err, null);
-  //       }
-  //     );
-  // }
-
   function serializeUser(user, done) {
     done(null, user);
   }
@@ -269,44 +235,9 @@ module.exports = function (app, models) {
       );
   }
 
-
-
   function login(req, res) {
     var user = req.user;
     res.json(user);
-
-
-    //
-    // userModel
-    //   .findUserByUsername(req.body.username)
-    //   .then(
-    //     function (user) {
-    //       if (user && bcrypt.compareSync(req.body.password, user.password)) {
-    //         // console.log("Found user ")
-    //         //console.log(user);
-    //         console.log("match");
-    //         res.status(200).json(user);
-    //
-    //       } else {
-    //         console.log("Wrong pw");
-    //         res.status(401).json("Wrong pw"); // sending status 410 unauthorized in case of wrong credentials
-    //         // done(null, "Error in the login");
-    //       }
-    //     },
-    //     function (err) {
-    //       res.send(err);
-    //     });
-
-
-
-
-
-    // var user = req.user;
-    // console.log("IN login");
-    // console.log(user);
-    // console.log(req);
-    // res.json(user);
-
   }
 
   function logout(req, res) {
@@ -315,9 +246,6 @@ module.exports = function (app, models) {
   }
 
   function loggedIn(req, res) {
-    //function given by passport
-    //console.log('rq at loogedIn', req);
-    //console.log('at logged in user', req.user);
     res.send(req.isAuthenticated() ? req.user : '0');
   }
 
@@ -333,23 +261,6 @@ module.exports = function (app, models) {
           res.statusCode(400).send(error);
         }
       )
-    // for (var i in users){
-    //     if (users[i].username === user.username){
-    //         var err = "dupuid";
-    //         res.send(err);
-    //
-    //         //return "yes";
-    //     }
-    // }
-    // if(user.password === user.vpassword){
-    //
-    //     //     user._id = (new Date()).getTime() + "";
-    //     //
-    //     // users.push(user);
-    //     // res.send(user);
-    // }
-    // var err = "uepw";
-    // res.send(err);
   }
 
   function deleteUser(req, res) {
@@ -365,16 +276,6 @@ module.exports = function (app, models) {
         function (error) {
           res.statusCode(404).send(error);
         });
-
-    // for(var i in users){
-    //     if(users[i]._id===userId){
-    //         users.splice(i,1);
-    //          console.log("deleted user");
-    //         res.send(200); /* 200 - OK */
-    //         return;
-    //     }
-    // }
-    // res.send(400);
   }
 
   function updateUser(req, res) {

@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {UserService} from '../../../services/userService.client';
+import {UserService} from '../../../services/user.service.client';
 import {Router} from '@angular/router';
 import 'rxjs/Rx';
 import {NgForm} from "@angular/forms";
@@ -32,13 +32,16 @@ export class LoginComponent implements OnInit {
     this.password = this.loginForm.value.password;
 
     // calling client side userservice to send login information
+    console.log('data', this.username);
     this._userService.login(this.username, this.password)
       .subscribe(
         (data: any) => {
             localStorage.setItem('user', JSON.stringify(data));
             this.errorFlag = false;
             this.router.navigate(['/profile'])},
-        (error: any) => this.errorFlag = true
+        (error: any) => {
+          this.errorFlag = true;
+        }
       );
   }
 }

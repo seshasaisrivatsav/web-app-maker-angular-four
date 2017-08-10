@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/user/login/login.component';
 import { Routing } from './app.routing';
 import { RegisterComponent } from './components/user/register/register.component';
-import { UserService } from './services/userService.client';
+import { UserService } from './services/user.service.client';
 import { ProfileComponent } from './components/user/profile/profile.component';
 import { WebsiteListComponent } from './components/website/website-list/website-list.component';
 import { WebsiteNewComponent } from './components/website/website-new/website-new.component';
@@ -64,24 +64,4 @@ import {AuthGuard} from './services/auth-gaurd.service';
   bootstrap: [AppComponent]
 })
 
-export class AppModule {
-
-  // checkLoggedin($q, UserService, $location, $rootScope) {
-  //   var deferred = $q.defer();
-  //   UserService
-  //     .loggedin()
-  //     .success(
-  //       function (user) {
-  //         if (user != '0') {
-  //           $rootScope.loggedUser = user;
-  //           deferred.resolve(user); // user is binded to loggedin here
-  //         } else {
-  //           deferred.reject();
-  //           $location.url("/login");
-  //         }
-  //       }
-  //     );
-  //   return deferred.promise;
-  // }
-
-}
+export class AppModule {}

@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {UserService} from "../../../services/userService.client";
+import {UserService} from "../../../services/user.service.client";
 import {Router} from "@angular/router";
 import {NgForm} from "@angular/forms";
 
