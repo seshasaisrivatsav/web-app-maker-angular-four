@@ -11,7 +11,7 @@ export class PageListComponent implements OnInit {
 
   pages = [{}];
   websiteId: string;
-  userId: string;
+  //userId: string;
 
   constructor(private _pageService: PageService, private activatedRoute: ActivatedRoute) { }
 
@@ -22,7 +22,7 @@ export class PageListComponent implements OnInit {
       .subscribe(
         (params: any) => {
           this.websiteId = params['websiteId'];
-          this.userId = params['userId'];
+          //this.userId = params['userId'];
         }
       );
 

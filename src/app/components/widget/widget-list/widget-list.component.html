@@ -3,7 +3,7 @@
     <!--<div class="navbar-header complete-width">-->
 
       <p class="navbar-text pull-left ">
-        <a [routerLink]="['/user', userId, 'website', websiteId, 'page']" class="navbar-link">
+        <a [routerLink]="['/user', 'website', websiteId, 'page']" class="navbar-link">
           <span class="glyphicon glyphicon-chevron-left glyphicon-chevron-left-pages-page"> </span>
         </a>
       </p>
@@ -13,7 +13,7 @@
       </a>
 
       <p class="navbar-text pull-right">
-        <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget', 'new']" class="navbar-link">
+        <a [routerLink]="['/user', 'website', websiteId, 'page', pageId, 'widget', 'new']" class="navbar-link">
           <span class="glyphicon glyphicon-plus glyphicon-plus-pages-page"> </span>
         </a>
       </p>
@@ -31,7 +31,7 @@
       <div class="jga-widget">
 
         <div class="jga-widget-tool">
-          <a [routerLink]="['/user', userId, 'website', websiteId, 'page', pageId, 'widget', widget._id]">
+          <a [routerLink]="['/user', 'website', websiteId, 'page', pageId, 'widget', widget._id]">
             <span class="glyphicon glyphicon-cog"> </span>
           </a>
           <span class="glyphicon glyphicon-align-justify"></span>
@@ -83,7 +83,7 @@
         </p>
 
         <p class="navbar-text pull-right">
-          <a [routerLink]="['/user', userId]" class="navbar-link">
+          <a [routerLink]="['/profile']" class="navbar-link">
             <span class="glyphicon glyphicon-user glyphicon-user-page-pages"> </span>
           </a>
         </p>

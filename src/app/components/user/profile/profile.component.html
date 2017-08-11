@@ -1,5 +1,3 @@
-
-
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
 
@@ -22,10 +20,7 @@
 </nav>
 
 
-
-
 <div class="container pushdown">
-
 
     <div class="form-group">
       <label for="username">Username</label>
@@ -35,7 +30,6 @@
              id="username"
              placeholder="walice">
     </div>
-
 
     <div class="form-group">
       <label for="email">Email address</label>
@@ -66,8 +60,8 @@
     </div>
 
   <a class="btn btn-primary btn-block"
-     [routerLink]="['/user', userId, 'website']">Websites</a>
-  <a (click) = "logout()" class="btn btn-danger btn-block" routerLink="/login">Logout</a>
+     [routerLink]="['/user', 'website']">Websites</a>
+  <a (click) = "logout()" class="btn btn-danger btn-block">Logout</a>
   <a class="btn btn-danger btn-block "
      (click)= "deleteUser()">un-register</a>
 
