@@ -3,8 +3,6 @@ var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 var bcrypt = require("bcrypt-nodejs");
 
-/* unlike angular, if w e ask by name, we cant get it */
-// we are passing models
 module.exports = function (app, models) {
 
   var userModel = models.userModel;

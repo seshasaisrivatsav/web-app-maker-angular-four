@@ -23,7 +23,7 @@
 </nav>
 
 <div class="container">
-
+<div class="widget-list" appSortable>
   <div *ngFor="let widget of widgets">
 
     <div [ngSwitch]="widget.type">
@@ -63,7 +63,7 @@
     </div>
 
   </div>
-
+</div>
 </div>
 
   <nav class="navbar navbar-default navbar-fixed-bottom navbar-page-pages">

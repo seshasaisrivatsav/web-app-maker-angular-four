@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit} from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import {ActivatedRoute} from "@angular/router";
-import {WidgetService} from "../../../services/widget.service.client";
+import {ActivatedRoute} from '@angular/router';
+import {WidgetService} from '../../../services/widget.service.client';
+declare var jQuery: any;
 
 @Component({
   selector: 'app-widget-list',
@@ -15,7 +16,7 @@ export class WidgetListComponent implements OnInit {
   websiteId: string;
   pageId: string;
 
-  constructor(private activatedRoute: ActivatedRoute, private widgetService: WidgetService, private sanatiizer: DomSanitizer) { }
+  constructor(private activatedRoute: ActivatedRoute, private widgetService: WidgetService, private _eleRef: ElementRef) { }
 
   ngOnInit() {
 
@@ -28,6 +29,7 @@ export class WidgetListComponent implements OnInit {
         }
       );
 
+    // fetching list of widgets using widget service
     this.widgetService.findWidgetsByPageId(this.pageId)
       .subscribe(
         (data: any) => {
@@ -35,7 +37,5 @@ export class WidgetListComponent implements OnInit {
           console.log(this.widgets);
         }
       );
-
   }
-
 }

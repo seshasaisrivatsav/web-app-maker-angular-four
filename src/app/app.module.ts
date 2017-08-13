@@ -29,6 +29,7 @@ import { WidgetTextComponent } from './components/widget/widget-edit/widget-text
 import {SafePipe} from './components/widget/widget-list/safe-pipe.pipe';
 import {AuthGuard} from './services/auth-gaurd.service';
 import {SharedService} from './services/shared.service';
+import {SortableDirective} from "./components/widget/widget-list/sortable.directive";
 
 // add client side services to providers
 
@@ -53,7 +54,8 @@ import {SharedService} from './services/shared.service';
     WidgetHtmlComponent,
     WidgetImageComponent,
     WidgetTextComponent,
-    SafePipe
+    SafePipe,
+    SortableDirective
   ],
   imports: [
     BrowserModule,

@@ -11,9 +11,9 @@ export class SafePipe implements PipeTransform {
 
     // splitting input url on '='
     // the result is two elements in the output array
-    var parts = url.split("=");
-    var id = parts[1];
-    url = "https://www.youtube.com/embed/" +id;
+    const parts = url.split('=');
+    const id = parts[1];
+    url = 'https://www.youtube.com/embed/' + id;
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 }
