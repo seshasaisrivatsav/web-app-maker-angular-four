@@ -30,6 +30,7 @@ import {SafePipe} from './components/widget/widget-list/safe-pipe.pipe';
 import {AuthGuard} from './services/auth-gaurd.service';
 import {SharedService} from './services/shared.service';
 import {SortableDirective} from "./components/widget/widget-list/sortable.directive";
+import {OrderByPipe} from "./components/widget/widget-list/order-by-pipe.pipe";
 
 // add client side services to providers
 
@@ -55,7 +56,8 @@ import {SortableDirective} from "./components/widget/widget-list/sortable.direct
     WidgetImageComponent,
     WidgetTextComponent,
     SafePipe,
-    SortableDirective
+    SortableDirective,
+    OrderByPipe
   ],
   imports: [
     BrowserModule,

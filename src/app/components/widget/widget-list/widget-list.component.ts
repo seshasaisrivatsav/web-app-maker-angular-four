@@ -1,8 +1,7 @@
-import {AfterViewInit, Component, ElementRef, OnInit} from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
+import {AfterViewInit, Component, DoCheck, ElementRef, OnChanges, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {WidgetService} from '../../../services/widget.service.client';
-declare var jQuery: any;
+import {SortableDirective} from './sortable.directive';
 
 @Component({
   selector: 'app-widget-list',
@@ -11,6 +10,7 @@ declare var jQuery: any;
 })
 export class WidgetListComponent implements OnInit {
 
+ // @ViewChild(SortableDirective) srtDir;
   widgets = [{}];
   widget = {};
   websiteId: string;
@@ -37,5 +37,27 @@ export class WidgetListComponent implements OnInit {
           console.log(this.widgets);
         }
       );
+  }
+
+  // ngDoCheck () {
+  //   console.log('ngDoCheck', this.srtDir.initialIndex);
+  // }
+  //
+  // ngAfterViewInit () {
+  //   console.log('ngAfterViewInit', this.srtDir.initialIndex);
+  // }
+  //
+  // ngOnChanges () {
+  //   console.log('ngOnChanges', this.srtDir.initialIndex);
+  // }
+
+  reorderWidgets(initialIndex: any, finalIndex: any) {
+    // call widget service function to update widget as per index
+    console.log(initialIndex, finalIndex);
+  }
+
+  posUpdate(widgetIndex) {
+    console.log('Hi');
+    console.log(widgetIndex);
   }
 }
