@@ -7,4 +7,9 @@ import {Injectable} from "@angular/core";
 
 export class SharedService {
   user = '';
+  widgetPos = {initialIndex: '', finalIndex: ''};
+
+  updateData() {
+    console.log(this.widgetPos);
+  }
 }
