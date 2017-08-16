@@ -17,6 +17,7 @@ import {WidgetListComponent} from './components/widget/widget-list/widget-list.c
 import {WidgetNewComponent} from './components/widget/widget-new/widget-new.component';
 import {WidgetEditComponent} from './components/widget/widget-edit/widget-edit.component';
 import {AuthGuard} from './services/auth-gaurd.service';
+import {FlickrImageSearchComponent} from './components/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component';
 
 const APP_ROUTES: Routes = [
   {path: '', component : LoginComponent},
@@ -31,7 +32,8 @@ const APP_ROUTES: Routes = [
   {path: 'user/website/:websiteId/page/:pageId', component: PageEditComponent, canActivate: [AuthGuard]},
   {path: 'user/website/:websiteId/page/:pageId/widget', component: WidgetListComponent, canActivate: [AuthGuard]},
   {path: 'user/website/:websiteId/page/:pageId/widget/new', component: WidgetNewComponent, canActivate: [AuthGuard]},
-  {path: 'user/website/:websiteId/page/:pageId/widget/:widgetId', component: WidgetEditComponent, canActivate: [AuthGuard]}
+  {path: 'user/website/:websiteId/page/:pageId/widget/:widgetId', component: WidgetEditComponent, canActivate: [AuthGuard]},
+  {path: 'user/website/:websiteId/page/:pageId/widget/:widgetId/flickr', component: FlickrImageSearchComponent, canActivate: [AuthGuard]}
 
 ];
 

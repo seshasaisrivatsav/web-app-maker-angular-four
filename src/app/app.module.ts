@@ -29,8 +29,9 @@ import { WidgetTextComponent } from './components/widget/widget-edit/widget-text
 import {SafePipe} from './components/widget/widget-list/safe-pipe.pipe';
 import {AuthGuard} from './services/auth-gaurd.service';
 import {SharedService} from './services/shared.service';
-import {SortableDirective} from "./components/widget/widget-list/sortable.directive";
-import {OrderByPipe} from "./components/widget/widget-list/order-by-pipe.pipe";
+import {SortableDirective} from './components/widget/widget-list/sortable.directive';
+import {OrderByPipe} from './components/widget/widget-list/order-by-pipe.pipe';
+import { FlickrImageSearchComponent } from './components/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component';
 
 // add client side services to providers
 
@@ -57,7 +58,8 @@ import {OrderByPipe} from "./components/widget/widget-list/order-by-pipe.pipe";
     WidgetTextComponent,
     SafePipe,
     SortableDirective,
-    OrderByPipe
+    OrderByPipe,
+    FlickrImageSearchComponent
   ],
   imports: [
     BrowserModule,
