@@ -32,6 +32,7 @@ import {SharedService} from './services/shared.service';
 import {SortableDirective} from './components/widget/widget-list/sortable.directive';
 import {OrderByPipe} from './components/widget/widget-list/order-by-pipe.pipe';
 import { FlickrImageSearchComponent } from './components/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component';
+import {FlickrService} from './services/flickr.service.client';
 
 // add client side services to providers
 
@@ -67,7 +68,7 @@ import { FlickrImageSearchComponent } from './components/widget/widget-edit/widg
     HttpModule,
     Routing
   ],
-  providers: [UserService, WebsiteService, PageService, WidgetService, AuthGuard, SharedService],
+  providers: [UserService, WebsiteService, PageService, WidgetService, AuthGuard, SharedService, FlickrService],
   bootstrap: [AppComponent]
 })
 
