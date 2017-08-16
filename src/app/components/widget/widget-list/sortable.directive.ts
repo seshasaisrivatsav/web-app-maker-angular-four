@@ -1,10 +1,9 @@
 /**
  * Created by mayankrd on 8/13/17.
  */
-import {Directive, ElementRef, EventEmitter, Input, Output} from '@angular/core';
+import {Directive, ElementRef, EventEmitter, Output} from '@angular/core';
 import {AfterViewInit} from '@angular/core';
 import {SharedService} from '../../../services/shared.service';
-import {WidgetService} from "../../../services/widget.service.client";
 declare var jQuery: any;
 
 @Directive({
@@ -12,7 +11,7 @@ declare var jQuery: any;
 })
 export class SortableDirective implements AfterViewInit {
 
-  @Output() newIndexes = new EventEmitter();
+  @Output() newIndexes = new EventEmitter(); // this will emit an event for the parent component or the directive calling component
 
   initialIndex: any;
 
