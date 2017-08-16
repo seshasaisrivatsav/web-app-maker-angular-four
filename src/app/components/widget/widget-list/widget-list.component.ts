@@ -1,7 +1,6 @@
-import {AfterViewInit, Component, DoCheck, ElementRef, OnChanges, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {WidgetService} from '../../../services/widget.service.client';
-import {SortableDirective} from './sortable.directive';
 
 @Component({
   selector: 'app-widget-list',
@@ -16,7 +15,7 @@ export class WidgetListComponent implements OnInit {
   websiteId: string;
   pageId: string;
 
-  constructor(private activatedRoute: ActivatedRoute, private widgetService: WidgetService, private _eleRef: ElementRef) { }
+  constructor(private activatedRoute: ActivatedRoute, private widgetService: WidgetService) { }
 
   ngOnInit() {
 
@@ -39,25 +38,12 @@ export class WidgetListComponent implements OnInit {
       );
   }
 
-  // ngDoCheck () {
-  //   console.log('ngDoCheck', this.srtDir.initialIndex);
-  // }
-  //
-  // ngAfterViewInit () {
-  //   console.log('ngAfterViewInit', this.srtDir.initialIndex);
-  // }
-  //
-  // ngOnChanges () {
-  //   console.log('ngOnChanges', this.srtDir.initialIndex);
-  // }
-
-  reorderWidgets(initialIndex: any, finalIndex: any) {
+  reorderWidgets(indexes) {
     // call widget service function to update widget as per index
-    console.log(initialIndex, finalIndex);
-  }
-
-  posUpdate(widgetIndex) {
-    console.log('Hi');
-    console.log(widgetIndex);
+    console.log(indexes);
+    this.widgetService.reorderWidgets(indexes.startIndex, indexes.endIndex, this.pageId)
+      .subscribe(
+        (data) => console.log(data)
+      );
   }
 }
