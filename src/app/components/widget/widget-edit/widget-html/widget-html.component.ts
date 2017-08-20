@@ -10,7 +10,9 @@ import {WidgetService} from "../../../../services/widget.service.client";
 export class WidgetHtmlComponent implements OnInit {
 
   widgetNew = {name: '', text: ''};
-  widName: string;
+  error: string;
+  alert: string;
+  flag = false;
   widget = {};
   userId: string;
   websiteId: string;
@@ -21,6 +23,10 @@ export class WidgetHtmlComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute, private widgetService: WidgetService, private router: Router) { }
 
   ngOnInit() {
+
+    // initialize error and alert text
+    this.error = 'Enter the name of the widget';
+    this.alert = '* Enter the widget name';
 
     // fetch ids from current url
     this.activatedRoute.params
@@ -45,11 +51,15 @@ export class WidgetHtmlComponent implements OnInit {
   updateWidget() {
 
     // if name field is undefined then set error 'flag' to true making 'error' and 'alert' message visible
-    this.widgetService.updateWidget(this.widgetId, this.widget)
-      .subscribe(
-        (data: any) => this.router.navigate(['/user', 'website', this.websiteId, 'page', this.pageId, 'widget']),
-        (error: any) => console.log(error)
-      );
+    if (this.widget['name'] === '') {
+      this.flag = true;
+    } else {
+      this.widgetService.updateWidget(this.widgetId, this.widget)
+        .subscribe(
+          (data: any) => this.router.navigate(['/user', 'website', this.websiteId, 'page', this.pageId, 'widget']),
+          (error: any) => console.log(error)
+        );
+    }
   }
 
   deleteWidget() {

@@ -29,7 +29,7 @@
 
 
 <div class="container">
-  <div *ngIf="error"
+  <div *ngIf="flag"
        class="alert alert-danger">
     {{error}}
   </div>
@@ -44,7 +44,7 @@
              placeholder="Name"
              required>
       <span class="alert-class"
-            *ngIf="error">{{alert}}</span>
+            *ngIf="flag">{{alert}}</span>
     </div>
     <!--<div ng-model="model.widget.text"-->
          <!--text-angular-->
