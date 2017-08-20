@@ -36,20 +36,18 @@
   <input [(ngModel)]="widget.text" class="form-control"/>
   Rows
   <input [(ngModel)]="widget.rows" class="form-control" type="number"/>
-  <div class="form-group">
+
     <label for="Name">Name</label>
-    <form  novalidate name="model.myform">
+    <div>
       <input [(ngModel)]="widget.name"
              type="text"
              class="form-control"
              id="Name"
              name="name"
-             placeholder="Name"
-             required>
+             placeholder="Name">
       <span class="alert-class"
             *ngIf=flag>{{alert}}</span>
-    </form>
-  </div>
+    </div>
 
   Placeholder
   <input [(ngModel)]="widget.placeholder" class="form-control" required/>
