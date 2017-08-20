@@ -65,8 +65,6 @@ export class FlickrImageSearchComponent implements OnInit {
     let url = 'https://farm' + photo.farm + '.staticflickr.com/' + photo.server;
     url += '/' + photo.id + '_' + photo.secret + '_b.jpg';
 
-    console.log(url);
-
     const widget = {
       websiteId : this.websiteId,
       pageId : this.pageId,

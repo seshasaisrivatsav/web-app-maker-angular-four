@@ -3,7 +3,6 @@
  */
 import {Directive, ElementRef, EventEmitter, Output} from '@angular/core';
 import {AfterViewInit} from '@angular/core';
-import {SharedService} from '../../../services/shared.service';
 declare var jQuery: any;
 
 @Directive({
@@ -15,7 +14,7 @@ export class SortableDirective implements AfterViewInit {
 
   initialIndex: any;
 
-  constructor(private el: ElementRef, private sharedService: SharedService) {
+  constructor(private el: ElementRef) {
   }
 
   // Lifecycle hook that is called after a component's view has been fully initialized
@@ -31,7 +30,6 @@ export class SortableDirective implements AfterViewInit {
       start: function (event, ui) {
         console.log('Old position: ' + ui.item.index());
         refe.initialIndex = ui.item.index();
-        refe.sharedService.widgetPos.initialIndex = ui.item.index();;
       },
       stop: function (event, ui) {
         console.log('New position: ' + ui.item.index());
