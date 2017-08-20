@@ -56,7 +56,7 @@
           <img [src] = "widget.url" width= "widget.width"/>
         </div>
 
-        <!--<div *ngSwitchCase="HTML" [innerHTML]="checkSafeHtml(widget.text)"></div>-->
+        <div *ngSwitchCase="'HTML'" [innerHTML]="widget.text"></div>
 
       </div>
 
