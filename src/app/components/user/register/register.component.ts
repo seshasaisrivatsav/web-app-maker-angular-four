@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {UserService} from "../../../services/user.service.client";
-import {Router} from "@angular/router";
-import {NgForm} from "@angular/forms";
+import {UserService} from '../../../services/user.service.client';
+import {Router} from '@angular/router';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -33,7 +33,6 @@ export class RegisterComponent implements OnInit {
         this._userService.register(this.username, this.password)
           .subscribe(
             (data: any) => {
-              localStorage.setItem('user', JSON.stringify(data));
               this.router.navigate(['/profile']);
             },
             (error: any) => {

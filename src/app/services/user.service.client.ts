@@ -7,7 +7,7 @@ import {Http, RequestOptions, Response} from '@angular/http';
 import 'rxjs/Rx';
 import {environment} from '../../environments/environment';
 import {Router} from '@angular/router';
-import {SharedService} from "./shared.service";
+import {SharedService} from './shared.service';
 // injecting service into module
 @Injectable()
 

@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { QuillEditorModule } from 'ngx-quill-editor';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/user/login/login.component';
@@ -66,7 +67,8 @@ import {FlickrService} from './services/flickr.service.client';
     BrowserModule,
     FormsModule,
     HttpModule,
-    Routing
+    Routing,
+    QuillEditorModule
   ],
   providers: [UserService, WebsiteService, PageService, WidgetService, AuthGuard, SharedService, FlickrService],
   bootstrap: [AppComponent]

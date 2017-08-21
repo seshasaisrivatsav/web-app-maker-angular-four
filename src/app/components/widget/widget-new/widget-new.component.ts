@@ -20,7 +20,7 @@ export class WidgetNewComponent implements OnInit {
     'Image': {type: 'Image', width: '100%'},
     'YouTube': {type: 'YouTube', width: '100%'},
     'HTML': {type: 'HTML'},
-    'Text': {type: 'Text'}
+    'Text': {type: 'Text', placeholder: ''}
   };
 
   constructor(private widgetService: WidgetService, private router: Router, private activatedRoute: ActivatedRoute) { }
