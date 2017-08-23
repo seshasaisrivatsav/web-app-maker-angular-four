@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
-import {ActivatedRoute} from "@angular/router";
-import {WidgetService} from "../../../services/widget.service.client";
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {WidgetService} from '../../../services/widget.service.client';
 
 @Component({
   selector: 'app-widget-list',
@@ -10,12 +9,13 @@ import {WidgetService} from "../../../services/widget.service.client";
 })
 export class WidgetListComponent implements OnInit {
 
+ // @ViewChild(SortableDirective) srtDir;
   widgets = [{}];
   widget = {};
   websiteId: string;
   pageId: string;
 
-  constructor(private activatedRoute: ActivatedRoute, private widgetService: WidgetService, private sanatiizer: DomSanitizer) { }
+  constructor(private activatedRoute: ActivatedRoute, private widgetService: WidgetService) { }
 
   ngOnInit() {
 
@@ -28,6 +28,7 @@ export class WidgetListComponent implements OnInit {
         }
       );
 
+    // fetching list of widgets using widget service
     this.widgetService.findWidgetsByPageId(this.pageId)
       .subscribe(
         (data: any) => {
@@ -35,7 +36,14 @@ export class WidgetListComponent implements OnInit {
           console.log(this.widgets);
         }
       );
-
   }
 
+  // receiving the emitted event
+  reorderWidgets(indexes) {
+    // call widget service function to update widget as per index
+    this.widgetService.reorderWidgets(indexes.startIndex, indexes.endIndex, this.pageId)
+      .subscribe(
+        (data) => console.log(data)
+      );
+  }
 }

@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { QuillEditorModule } from 'ngx-quill-editor';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/user/login/login.component';
@@ -29,6 +30,10 @@ import { WidgetTextComponent } from './components/widget/widget-edit/widget-text
 import {SafePipe} from './components/widget/widget-list/safe-pipe.pipe';
 import {AuthGuard} from './services/auth-gaurd.service';
 import {SharedService} from './services/shared.service';
+import {SortableDirective} from './components/widget/widget-list/sortable.directive';
+import {OrderByPipe} from './components/widget/widget-list/order-by-pipe.pipe';
+import { FlickrImageSearchComponent } from './components/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component';
+import {FlickrService} from './services/flickr.service.client';
 
 // add client side services to providers
 
@@ -53,15 +58,19 @@ import {SharedService} from './services/shared.service';
     WidgetHtmlComponent,
     WidgetImageComponent,
     WidgetTextComponent,
-    SafePipe
+    SafePipe,
+    SortableDirective,
+    OrderByPipe,
+    FlickrImageSearchComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    Routing
+    Routing,
+    QuillEditorModule
   ],
-  providers: [UserService, WebsiteService, PageService, WidgetService, AuthGuard, SharedService],
+  providers: [UserService, WebsiteService, PageService, WidgetService, AuthGuard, SharedService, FlickrService],
   bootstrap: [AppComponent]
 })
 
