@@ -11,15 +11,23 @@ import {SharedService} from "../../../services/shared.service";
 export class WebsiteListComponent implements OnInit {
 
   user = {};
-  userId : String;
-  websites = [{}];
+  userId : string;
+  websites = {};
   websiteId: string;
-  sub: any;
 
   constructor(private _websiteService : WebsiteService, private activatedRoute: ActivatedRoute, private sharedService: SharedService) { }
 
   ngOnInit() {
     this.getUser();
+
+
+    // this._websiteService.findWebsitesByUser(this.userId)
+    //   .toPromise()
+    //   .then(data => {
+    //     this.websites = JSON.stringify(data);
+    //   })
+
+
     this._websiteService.findWebsitesByUser(this.userId)
       .subscribe(
         (data) => {
