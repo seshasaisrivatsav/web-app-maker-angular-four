@@ -692,7 +692,6 @@ var ProfileComponent = (function () {
             .subscribe(function (data) {
             _this._UserService.findUserById(updatedUser._id)
                 .subscribe(function (data) {
-                console.log(data);
                 localStorage.setItem('user', JSON.stringify(data));
                 _this.ngOnInit();
             });
@@ -1387,7 +1386,6 @@ var WidgetHtmlComponent = (function () {
             _this.pageId = params['pageId'];
             _this.widgetId = params['widgetId'];
         });
-        console.log(this.widgetId);
         // fetching current widget based on widgetId
         this.widgetService.findWidgetById(this.widgetId)
             .subscribe(function (data) { _this.widget = data; _this.widget = __assign({}, _this.widgetNew, _this.widget); console.log(_this.widget); }, function (error) { return console.log(error); });
@@ -1499,12 +1497,10 @@ var FlickrImageSearchComponent = (function () {
         this.flickrService
             .searchPhotos(this.searchText)
             .subscribe(function (data) {
-            console.log(data);
             var val = data._body;
             val = val.replace('jsonFlickrApi(', '');
             val = val.substring(0, val.length - 1);
             val = JSON.parse(val);
-            console.log(val);
             _this.photos = val.photos;
         });
         // .then(function (response) {
@@ -1732,7 +1728,6 @@ var WidgetTextComponent = (function () {
     };
     WidgetTextComponent.prototype.updateWidget = function () {
         var _this = this;
-        console.log(this.widget);
         // if name field is undefined then set error 'flag' to true making 'error' and 'alert' message visible
         if (this.widget['name'] === undefined) {
             this.flag = true;
@@ -1988,11 +1983,9 @@ var SortableDirective = (function () {
         jQuery(this.el.nativeElement).sortable({
             axis: 'y',
             start: function (event, ui) {
-                console.log('Old position: ' + ui.item.index());
                 refe.initialIndex = ui.item.index();
             },
             stop: function (event, ui) {
-                console.log('New position: ' + ui.item.index());
                 refe.newIndexes.emit({
                     startIndex: refe.initialIndex,
                     endIndex: ui.item.index()
@@ -2083,7 +2076,6 @@ var WidgetListComponent = (function () {
         this.widgetService.findWidgetsByPageId(this.pageId)
             .subscribe(function (data) {
             _this.widgets = data;
-            console.log(_this.widgets);
         });
     };
     // receiving the emitted event
@@ -2179,7 +2171,6 @@ var WidgetNewComponent = (function () {
     WidgetNewComponent.prototype.createWidget = function (widgetType) {
         var _this = this;
         this.widget = this.defaultWidgetValues[widgetType];
-        console.log(this.widget);
         this.widgetService.createWidget(this.pageId, this.widget)
             .subscribe(function (data) {
             _this.widgetId = data._id;
@@ -2455,7 +2446,6 @@ var UserService = (function () {
                 return true;
             }
             else {
-                console.log('user at logged in: ', user);
                 _this.router.navigate(['/login']);
                 return false;
             }
@@ -2557,7 +2547,6 @@ var WebsiteService = (function () {
         });
     };
     WebsiteService.prototype.findWebsitesByUser = function (userId) {
-        console.log(this.baseUrl + '/api/user/' + userId + '/website');
         return this._http.get(this.baseUrl + '/api/user/' + userId + '/website')
             .map(function (res) {
             var data = res.json();
@@ -2565,15 +2554,12 @@ var WebsiteService = (function () {
         });
     };
     WebsiteService.prototype.createWebsite = function (userId, website) {
-        //console.log("create website in client service called", userId, website);
         var body = {
             name: website.name,
             description: website.description,
             developerId: userId
         };
-        //http://localhost:9000/api/user/59611de40e8a493006c0cebb/website
         var url = this.baseUrl + '/api/user/' + userId + '/website';
-        console.log("create website in client service called", url, userId, body);
         return this._http.post(url, body)
             .map(function (res) {
             var data = res.json();
@@ -2682,8 +2668,6 @@ var WidgetService = (function () {
     };
     WidgetService.prototype.reorderWidgets = function (startIndex, endIndex, pageId) {
         var url = this.baseUrl + '/api/page/' + pageId + '/widget?start=' + startIndex + '&end=' + endIndex;
-        //const body = 'start=' + startIndex + '&end=' + endIndex;
-        console.log('req at reorder client', url);
         return this._http.put(url, '')
             .map(function (res) {
             var data = res;

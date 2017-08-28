@@ -34,7 +34,6 @@ export class WebsiteService{
 
 
   findWebsitesByUser(userId : String){
-    console.log(this.baseUrl+ '/api/user/'+userId+'/website');
     return this._http.get(this.baseUrl+ '/api/user/'+userId+'/website')
       .map(
         (res: Response) => {
@@ -46,21 +45,12 @@ export class WebsiteService{
   }
 
   createWebsite(userId, website){
-
-    //console.log("create website in client service called", userId, website);
-
     var body = {
       name : website.name,
       description : website.description,
       developerId : userId
     };
-
-    //http://localhost:9000/api/user/59611de40e8a493006c0cebb/website
-
     var url = this.baseUrl+ '/api/user/'+userId+'/website';
-
-    console.log("create website in client service called", url, userId, body);
-
     return this._http.post(url, body)
       .map(
         (res: Response) => {
@@ -73,7 +63,6 @@ export class WebsiteService{
   }
 
   updateWebsite(websiteId, website){
-
     var url = this.baseUrl + '/api/website/' + websiteId;
     var body = website;
     return this._http.put(url, body)
@@ -86,7 +75,6 @@ export class WebsiteService{
   }
 
   deleteWebsite(websiteId){
-
     var url = this.baseUrl + '/api/website/' + websiteId;
     return this._http.delete(url)
       .map(

@@ -38,7 +38,7 @@ export class WidgetHtmlComponent implements OnInit {
         }
       );
 
-    console.log(this.widgetId);
+
 
     // fetching current widget based on widgetId
     this.widgetService.findWidgetById(this.widgetId)

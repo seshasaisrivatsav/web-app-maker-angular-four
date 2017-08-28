@@ -40,9 +40,6 @@ export class WidgetNewComponent implements OnInit {
   createWidget(widgetType) {
 
     this.widget = this.defaultWidgetValues[widgetType];
-
-    console.log(this.widget);
-
     this.widgetService.createWidget(this.pageId, this.widget)
       .subscribe(
         (data: any) => {

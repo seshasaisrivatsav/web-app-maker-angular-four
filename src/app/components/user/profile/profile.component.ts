@@ -64,7 +64,6 @@ export class ProfileComponent implements OnInit {
         this._UserService.findUserById(updatedUser._id)
           .subscribe(
             (data: any) => {
-              console.log(data);
               localStorage.setItem('user', JSON.stringify(data));
               this.ngOnInit();
             }

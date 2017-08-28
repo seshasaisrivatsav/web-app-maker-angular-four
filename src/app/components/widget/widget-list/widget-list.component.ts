@@ -33,7 +33,6 @@ export class WidgetListComponent implements OnInit {
       .subscribe(
         (data: any) => {
           this.widgets = data;
-          console.log(this.widgets);
         }
       );
   }

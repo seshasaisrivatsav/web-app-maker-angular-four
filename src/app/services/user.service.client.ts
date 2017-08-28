@@ -29,7 +29,6 @@ export class UserService {
             this.sharedService.user = user; // setting user as global variable using shared service
             return true;
           } else {
-            console.log('user at logged in: ', user);
             this.router.navigate(['/login']);
             return false;
           }

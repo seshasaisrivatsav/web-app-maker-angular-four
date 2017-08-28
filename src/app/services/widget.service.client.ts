@@ -71,9 +71,6 @@ export class WidgetService{
   reorderWidgets(startIndex, endIndex, pageId) {
 
     const url = this.baseUrl + '/api/page/' + pageId + '/widget?start=' + startIndex + '&end=' + endIndex;
-    //const body = 'start=' + startIndex + '&end=' + endIndex;
-    console.log('req at reorder client', url);
-
     return this._http.put(url, '')
       .map(
         (res: Response) => {
