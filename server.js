@@ -25,6 +25,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 /* Mongodb    */
+
+// mongodb://<dbuser>:<dbpassword>@ds113505.mlab.com:13505/webdev
 // var connectionString = 'mongodb://127.0.0.1:27017/taportal';
 var connectionString = 'mongodb://webappmaker:webappmaker@ds163181.mlab.com:63181/webappmaker';
 var mongoose = require("mongoose");

@@ -2441,7 +2441,7 @@ var UserService = (function () {
         return this._http.post(this.baseUrl + '/api/loggedIn', '', this.options)
             .map(function (res) {
             var user = res.json();
-            if (user != '0') {
+            if (user !== '0') {
                 _this.sharedService.user = user; // setting user as global variable using shared service
                 return true;
             }

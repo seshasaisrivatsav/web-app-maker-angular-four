@@ -25,7 +25,7 @@ export class UserService {
       .map(
         (res: Response) => {
           const user = res.json();
-          if (user != '0') {
+          if (user !== '0') {
             this.sharedService.user = user; // setting user as global variable using shared service
             return true;
           } else {
